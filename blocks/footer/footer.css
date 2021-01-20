@@ -1,0 +1,8 @@
+.footer {
+    position: relative;
+    grid-area: footer;
+    max-width: 880px;
+    width: 100%;
+    padding-bottom: 60px;
+    margin: 0 auto;
+}

@@ -1,0 +1,14 @@
+.header {
+    position: relative;
+    grid-area: header;
+    max-width: 880px;
+    width: 100%;
+    padding-top: 45px;
+    padding-bottom: 40px;
+    margin: 0 auto;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid;
+    border-bottom-color: rgba(54, 54, 54, 0.7);
+}
