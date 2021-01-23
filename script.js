@@ -18,13 +18,7 @@ if (evt.target === evt.currentTarget) {
 
 popupWindow.addEventListener ('click', popUpClose);
 
-const infoTitle = document.querySelector('.profile__visitor-name');
-const infoAttribute = document.querySelector('.profile__visitor-attribute');
 
-const inputTitle = document.querySelector('.popup__profile-name');
-const inputAttribute = document.querySelector('.popup__profile-attribute');
-
-const saveButton = document.querySelector('.popup__commit');
 
 
 
@@ -39,8 +33,8 @@ const saveButton = document.querySelector('.popup__commit');
 
 // fillInput
 
-inputTitle.value = infoTitle.textContent
-inputAttribute.value = infoAttribute.textContent
+// inputTitle.value = infoTitle.textContent
+// inputAttribute.value = infoAttribute.textContent
 
 // const otherTitle = function (evt) {
 //     evt.preventDefault(evt)
@@ -71,20 +65,27 @@ inputAttribute.value = infoAttribute.textContent
 
 //         formElement.addEventListener ('submit', formSubmitHandler)
 
-let formElement = document.querySelector('.popup__action-window');
-let nameInput = String;
-let jobInput = String;
+const infoTitle = document.querySelector('.profile__visitor-name');
+const infoAttribute = document.querySelector('.profile__visitor-attribute');
+
+const inputTitle = document.querySelector('.popup__profile-name');
+const inputAttribute = document.querySelector('.popup__profile-attribute');
+
+const saveButton = document.querySelector('.popup__commit');
+
+const formElement = document.querySelector('.popup__action-window');
+let nameInput = "";
+let jobInput = "";
 
 function formSubmitHandler (evt) {
     evt.preventDefault();
     nameInput = inputTitle.value;
-    jobInput = inputAttribute.value;
-    if (saveButton.addEventListener ('click', true) ) {
-        infoTitle.textContent = nameInput
-        infoAttribute.textContent = jobInput
-    }
+    jobInput = inputAttribute.value;    
+    infoTitle.textContent = nameInput;
+    infoAttribute.textContent = jobInput;
 }
 
+formElement.addEventListener ('submit', formSubmitHandler)
 // function saveEdit () {
 //     formSubmitHandler
 //     infoTitle.textContent = nameInput
@@ -95,4 +96,3 @@ function formSubmitHandler (evt) {
 
 
 
-// saveButton.addEventListener ('click', saveEdit)
