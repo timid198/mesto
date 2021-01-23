@@ -1,4 +1,6 @@
 .profile__visitor-attribute {
+    max-width: 336px;
+    width: 100%;
     color: white;
     font-style: normal;
     font-weight: 400;
@@ -18,7 +20,8 @@
 }
 
 @media screen and (max-width: 572px) {
-    .profile__visitor-attribute {        
+    .profile__visitor-attribute {
+        max-width: 282px;
         font-size: 14px;
         line-height: 16.94px;
         padding-top: 14px;

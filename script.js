@@ -37,6 +37,7 @@ function formSubmitHandler (evt) {
     jobInput = inputAttribute.value;    
     infoTitle.textContent = nameInput;
     infoAttribute.textContent = jobInput;
+    popupWindow.classList.toggle('popup_active');
 }
 
 formElement.addEventListener ('submit', formSubmitHandler)
