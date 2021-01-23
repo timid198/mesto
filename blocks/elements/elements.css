@@ -3,7 +3,8 @@
     position: relative;
     padding-bottom: 67px;
     width: 100%;
-    display: grid;
+    display: grid;    
+    justify-content: center;
     grid-template-columns: repeat(3, 32.05%);
     grid-template-rows: repeat(2, 1fr);
     gap: 17px;
@@ -22,5 +23,6 @@
         grid-template-columns: repeat(1, 90%);
         grid-template-rows: repeat(6, 1fr);
         row-gap: 20px;
+        padding-bottom: 48px;
     }
 }

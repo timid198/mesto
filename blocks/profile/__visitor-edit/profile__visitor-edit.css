@@ -1,13 +1,3 @@
-/* .profile__visitor-edit {
-    
-} */
-
-
-
-
-
-
-
 .profile__visitor-edit::after {
     position: relative;
     display: inline-block;
@@ -26,7 +16,16 @@
     width: 8px;
     height: 8px;
     padding: 7px;
-    align-self: center;
     font-family: none;
     margin-left: 18px;
+}
+
+@media screen and (max-width: 572px) {
+    .profile__visitor-edit::after {        
+        background-size: 7.5px, auto, cover;
+        width: 5.5px;
+        height: 5.5px;
+        padding: 5.25px;
+        margin-left: 10px;
+    }
 }

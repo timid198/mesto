@@ -1,16 +1,6 @@
-.profile__info {
-    max-width: 38.2%;
-    width: 100%;
-    padding-left: 30px;
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-}
-
-/* .profile__info::before {
-    position: absolute;
-    right: 0;
-    content: "";
+.profile__edit-button {    
+    position: relative;
+    align-self: flex-end;
     display: inline-block;
     border: 1px solid #FFFFFF;
     background-color: #000000;
@@ -28,12 +18,14 @@
     padding: 7px;
     font-family: none;
     margin-left: 18px;
-} */
+}
 
-@media screen and (max-width: 879px) {
-    .profile__info {
-        max-width: 88%;
-        padding-left: 0;
-        padding-top: 22.25px;
+@media screen and (max-width: 572px) {
+    .profile__edit-button {        
+        background-size: 7.5px, auto, cover;
+        width: 5.5px;
+        height: 5.5px;
+        padding: 5.25px;
+        margin-left: 10px;
     }
 }

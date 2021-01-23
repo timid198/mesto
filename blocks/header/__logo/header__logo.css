@@ -5,8 +5,16 @@
     max-height: 100%;
     width: 142px;
     height: 33px;
-    background-size: cover;
+    background-size:142px, 33px, cover;
     top: 0;
     left: 0;
     z-index: -1;    
+}
+
+@media screen and (max-width: 572px) {
+    .header__logo {
+        background-size:103.74px, 24.4px, cover;
+        width: 103.74px;
+        height: 24.4px;
+    }
 }
