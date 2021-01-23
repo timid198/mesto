@@ -1,34 +1,10 @@
 .profile__info {
     max-width: 38.2%;
-    width: 100%;
     padding-left: 30px;
     align-self: center;
     display: flex;
     flex-direction: column;
 }
-
-/* .profile__info::before {
-    position: absolute;
-    right: 0;
-    content: "";
-    display: inline-block;
-    border: 1px solid #FFFFFF;
-    background-color: #000000;
-    background-image: url(./../../../images/profile-stylus.png);
-    background-clip: padding-box;
-    background-origin: padding-box;
-    background-position: center;
-    background-size: 10px, auto, cover;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
-    width: 8px;
-    height: 8px;
-    padding: 7px;
-    font-family: none;
-    margin-left: 18px;
-} */
 
 @media screen and (max-width: 879px) {
     .profile__info {
