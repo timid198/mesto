@@ -21,10 +21,11 @@ popupWindow.addEventListener ('click', popUpClose);
 let infoTitle = document.querySelector('.profile__visitor-name');
 let infoAttribute = document.querySelector('.profile__visitor-attribute');
 
-let inputTitle = document.querySelector('.popup__profile-name');
-let inputAttribute = document.querySelector('.popup__profile-attribute');
-
 let formElement = document.querySelector('.popup__action-window');
+
+let inputTitle = formElement.querySelector('.popup__profile_name');
+let inputAttribute = formElement.querySelector('.popup__profile_attribute');
+
 let nameInput = "";
 let jobInput = "";
 
