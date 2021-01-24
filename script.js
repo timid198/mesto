@@ -68,12 +68,11 @@ popupWindow.addEventListener ('click', popUpClose);
 const infoTitle = document.querySelector('.profile__visitor-name');
 const infoAttribute = document.querySelector('.profile__visitor-attribute');
 
-const inputTitle = document.querySelector('.popup__profile-name');
-const inputAttribute = document.querySelector('.popup__profile-attribute');
-
-const saveButton = document.querySelector('.popup__commit');
-
 const formElement = document.querySelector('.popup__action-window');
+
+const inputTitle = formElement.querySelector('.popup__profile-name');
+const inputAttribute = formElement.querySelector('.popup__profile-attribute');
+
 let nameInput = "";
 let jobInput = "";
 
@@ -83,6 +82,7 @@ function formSubmitHandler (evt) {
     jobInput = inputAttribute.value;    
     infoTitle.textContent = nameInput;
     infoAttribute.textContent = jobInput;
+    popupWindow.classList.toggle('popup_active');
 }
 
 formElement.addEventListener ('submit', formSubmitHandler)
