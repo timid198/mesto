@@ -9,13 +9,14 @@
     background-size: 22px, auto, cover;
     background-repeat: no-repeat;
     border-radius: 2px;
-    object-fit: cover;
+    cursor: pointer;
     max-width: 100%;
     max-height: 100%;
     width: 150px;
-    height: 50px;
+    min-height: 50px;
     padding: 14px 64px;
     align-self: center;
+    transition: opacity 2s;
 }
 
 .profile__add-button:hover {

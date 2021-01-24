@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
+<<<<<<< HEAD
     <link rel="icon" href="./images/title-logo.png">
+=======
+    <link rel="icon" href="./images/favicon-16x16.png">
+>>>>>>> d62dd1784efa0ccb7673f6e30f3d17a492f51541
     <title>Место - Россия</title>
 </head>
 <body class="page">
@@ -14,29 +18,18 @@
         </div>
     </header>
 
-    <main class="main">
-        <div class="popup">
-            <div class="popup__action-window">
-                <button class="popup__action-close"></button>
-                <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__input-container">
-                    <input type="text" name="popup__profile-name" id="popup__profile-name" class="popup__profile-name" placeholder="Имя">
-                    <input type="text" name="popup__profile-attribute" id="popup__profile-attribute" class="popup__profile-attribute" placeholder="О себе">                    
-                    <button type="submit" value="Сохранить" class="popup__commit"></button>
-                </form>                
-            </div>
-        </div>
+    <main class="main">        
 
         <section class="profile">
             <ul class="profile__content">
                 <li class="profile__avatar">                    
                 </li>
                 <li class="profile__info">
-                    <div class="profile__info-title"><h2 class="profile__visitor-name">Жак-Ив Кусто</h2><span class="profile__edit-button"></span></div>
+                    <div class="profile__info-title"><h2 class="profile__visitor-name">Жак-Ив Кусто</h2><button type="button" class="profile__edit-button"></button></div>
                     <p class="profile__visitor-attribute">Исследователь океана</p>
                 </li>                
                 <li class="profile__add">
-                    <button class="profile__add-button"></button>
+                    <button type="button" class="profile__add-button"></button>
                 </li>
             </ul>
         </section>
@@ -44,53 +37,66 @@
         <section class="elements">
             <div class="element">
                 <img src="./images/element-moscow.jpg" alt="Москва" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Москва</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Москва</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
             <div class="element">
                 <img src="./images/element-saint_petersburg.jpg" alt="Санкт-Петербург" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Санкт-Петербург</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Санкт-Петербург</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
             <div class="element">
                 <img src="./images/element-kazan.jpg" alt="Казань" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Казань</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Казань</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
             <div class="element">
                 <img src="./images/element-rostow.jpg" alt="Ростов" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Ростов</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Ростов</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
             <div class="element">
                 <img src="./images/element-petergof.jpg" alt="Петергоф" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Петергоф</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Петергоф</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
             <div class="element">
                 <img src="./images/element-smolensk.jpg" alt="Смоленск" class="element__image">
-                <ul class="element__title">
-                    <li class="element__title-text">Смоленск</li>
-                    <li class="element__title-like"></li>
-                </ul>
+                <div class="element__title">
+                    <h2 class="element__title-text">Смоленск</h2>
+                    <button type="submit" class="element__title-like"></button>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <h3 class="footer__copyright">© 2020 Mesto Russia</h3>
+        <article class="footer__copyright">© 2020 Mesto Russia</article>
     </footer>
-    <script src='./script.js'></script>
+
+    <div class="popup">
+        <div class="popup__action-window">
+            <button type="reset" class="popup__action-close"></button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form class="popup__input-container">
+                <input type="text" class="popup__profile popup__profile_name" placeholder="Имя">
+                <input type="text" class="popup__profile popup__profile_attribute" placeholder="О себе">                    
+                <button type="submit" value="Сохранить" class="popup__commit">Сохранить</button>
+            </form>                
+        </div>
+    </div>
+
+    <script src='./scripts/script.js'></script>
     
 </body>
 </html>

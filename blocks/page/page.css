@@ -1,5 +1,6 @@
 .page {
     position: relative;
+    min-width: 320px;
     background-color: #000000;
     display: grid;
     align-items: start;
@@ -18,4 +19,15 @@
     -ms-text-size-adjust: 100%;
     -moz-text-size-adjust: 100%;
     text-rendering: optimizeLegibility;
+}
+
+@media screen and (min-width: 1281px) {
+    .page {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, max-content);
+        grid-template-areas:
+        ". header ."
+        ". main ."
+        ". footer .";
+    }
 }

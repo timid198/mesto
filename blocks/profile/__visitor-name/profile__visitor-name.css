@@ -1,5 +1,7 @@
 .profile__visitor-name {
     position: relative;
+    max-width: 294px;
+    width: 100%;
     color: white;
     font-style: normal;
     font-weight: 500;
@@ -11,29 +13,6 @@
     overflow: hidden;
 }
 
-/* .profile__visitor-name::after {
-    id
-    position: relative;
-    display: inline-block;
-    content: " ";
-    border: 1px solid #FFFFFF;
-    background-color: #000000;
-    background-image: url(./../../../images/profile-stylus.png);
-    background-clip: padding-box;
-    background-origin: padding-box;
-    background-position: center;
-    background-size: 10px, auto, cover;
-    background-repeat: no-repeat;
-    object-fit: cover;
-    max-width: 100%;
-    max-height: 100%;
-    width: 8px;
-    height: 8px;
-    padding: 7px;
-    font-family: none;
-    margin-left: 18px;
-} */
-
 @media screen and (max-width: 879px) {
     .profile__visitor-name {
         text-align: center;
@@ -42,17 +21,8 @@
 
 @media screen and (max-width: 572px) {
     .profile__visitor-name {
+        max-width: 189px;
         font-size: 27px;
         line-height: 32.68px;
     }
 }
-
-/* @media screen and (max-width: 572px) {
-    .profile__visitor-name::after {        
-        background-size: 7.5px, auto, cover;
-        width: 5.5px;
-        height: 5.5px;
-        padding: 5.25px;
-        margin-left: 10px;
-    }
-} */
