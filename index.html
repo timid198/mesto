@@ -31,66 +31,36 @@
         </section>
 
         <section class="elements">
-            <div class="element">
-                <img src="./images/element-moscow.jpg" alt="Москва" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Москва</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-saint_petersburg.jpg" alt="Санкт-Петербург" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Санкт-Петербург</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-kazan.jpg" alt="Казань" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Казань</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-rostow.jpg" alt="Ростов" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Ростов</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-petergof.jpg" alt="Петергоф" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Петергоф</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-smolensk.jpg" alt="Смоленск" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Смоленск</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
         </section>
     </main>
 
     <footer class="footer">
-        <article class="footer__copyright">© 2020 Mesto Russia</article>
+        <article class="footer__copyright">© 2021 Mesto Russia</article>
     </footer>
 
-    <div class="popup">
-        <div class="popup__action-window">
-            <button type="reset" class="popup__action-close"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__input-container">
-                <input type="text" class="popup__profile popup__profile_name" placeholder="Имя">
-                <input type="text" class="popup__profile popup__profile_attribute" placeholder="О себе">                    
-                <button type="submit" value="Сохранить" class="popup__commit">Сохранить</button>
-            </form>                
+    <template class="template__popup">
+        <div class="popup">
+            <div class="popup__action-window">
+                <button type="reset" class="popup__action-close"></button>
+                <h2 class="popup__title"></h2>
+                <form class="popup__input-container">
+                    <input type="text" class="popup__profile popup__profile_name" placeholder="">
+                    <input type="text" class="popup__profile popup__profile_attribute" placeholder="">                    
+                    <button type="submit" class="popup__commit"></button>
+                </form>
+            </div>
         </div>
-    </div>
+    </template>
+
+    <template class="template__element">
+        <div class="element">
+            <img src="" alt="" class="element__image">
+            <div class="element__title">
+                <h2 class="element__title-text"></h2>
+                <button type="submit" class="element__title-like"></button>
+            </div>
+        </div>  
+    </template>
 
     <script src='./scripts/script.js'></script>
     
