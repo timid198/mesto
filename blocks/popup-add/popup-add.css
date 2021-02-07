@@ -1,6 +1,6 @@
-.popup {
+.popup-add {
     position: fixed;
-    display: flex;
+    display: none;
     align-items:center;
     justify-content:center;
     flex-direction: row;
@@ -13,7 +13,7 @@
 }
 
 @media screen and (max-width: 572px) {
-    .popup {
+    .popup-add {
         flex-direction: column;
     }
 }

@@ -38,24 +38,37 @@
         <article class="footer__copyright">© 2021 Mesto Russia</article>
     </footer>
 
-    <template class="template__popup">
-        <div class="popup">
-            <div class="popup__action-window">
-                <button type="reset" class="popup__action-close"></button>
-                <h2 class="popup__title"></h2>
-                <form class="popup__input-container">
-                    <input type="text" class="popup__profile popup__profile_name" placeholder="">
-                    <input type="text" class="popup__profile popup__profile_attribute" placeholder="">                    
-                    <button type="submit" class="popup__commit"></button>
-                </form>
-            </div>
+    
+    <div class="popup-edit">
+        <div class="popup-edit__action-window">
+            <button type="reset" class="popup-edit__action-close"></button>
+            <h2 class="popup-edit__title">Редактировать профиль</h2>
+            <form class="popup-edit__input-container">
+                <input type="text" class="popup-edit__profile popup-edit__profile_name" placeholder="Имя">
+                <input type="text" class="popup-edit__profile popup-edit__profile_attribute" placeholder="О себе">                    
+                <button type="submit" class="popup-edit__commit">Сохранить</button>
+            </form>
         </div>
-    </template>
+    </div>
+
+    <div class="popup-add">
+        <div class="popup-add__action-window">
+            <button type="reset" class="popup-add__action-close"></button>
+            <h2 class="popup-add__title">Новое место</h2>
+            <form class="popup-add__input-container">
+                <input type="text" class="popup-add__profile popup-add__profile_name" placeholder="Название">
+                <input type="text" class="popup-add__profile popup-add__profile_attribute" placeholder="Ссылка на картинку">                    
+                <button type="submit" class="popup-add__commit">Создать</button>
+            </form>
+        </div>
+    </div>
 
     <template class="template__element">
         <div class="element">
+            <button type="button" class="element__trash"></button>
             <img src="" alt="" class="element__image">
             <div class="element__title">
+                <button type="button" class="element__trash"></button>
                 <h2 class="element__title-text"></h2>
                 <button type="submit" class="element__title-like"></button>
             </div>

@@ -1,4 +1,4 @@
-.popup__action-window {
+.popup-add__action-window {
     position: relative;
     z-index: -1;
     box-sizing: border-box;
@@ -13,7 +13,7 @@
 
 
 @media screen and (max-width: 572px) {
-    .popup__action-window {
+    .popup-add__action-window {
         width: 282px;
         min-height: 322px;
     }

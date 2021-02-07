@@ -1,11 +1,5 @@
 const templateEl = document.querySelector('.template__element');
-const templatePopup = document.querySelector ('.template__popup');
-let buttonOpen = document.querySelector('.profile__edit-button');
-let buttonClose = document.querySelector('.popup__action-close');
-let popupWindow = document.querySelector('.popup');
-
 const listContainerEl = document.querySelector('.elements');
-const page = document.querySelector('.page');
 
 const initialCards = [
     {
@@ -54,74 +48,92 @@ function render () {
 
 render ();
 
-const editProfile = [
-    { title: 'Редактировать профиль',
-      self: 'Имя',
-      about: 'О себе',
-      button: 'Сохранить'
-    }
-];
+let buttonEditOpen = document.querySelector('.profile__edit-button');
+let buttonEditClose = document.querySelector('.popup-edit__action-close');
+let popupEditWindow = document.querySelector('.popup-edit');
 
-const getPopup =  function (item) {
-    const newPopup = templatePopup.content.cloneNode(true);
-    const popupTitle = newPopup.querySelector('.popup__title');
-    popupTitle.textContent = item.title;
-    
-    const popupName = newPopup.querySelector('.popup__profile_name');
-    popupName.placeholder = item.self;
-
-    const popupAbout = newPopup.querySelector('.popup__profile_attribute');
-    popupAbout.placeholder = item.about;
-
-    const popupCommit = newPopup.querySelector('.popup__commit');
-    popupCommit.textContent = item.button;
-
-    return newPopup;
-}
-
-
-
-let popUpFunc = function (evt) {
+let popUpEditFunc = function (evt) {
     evt.preventDefault ();
-    const a = editProfile;
-    
-
-    page.append(Array.from(a).map(getPopup));
+    popupEditWindow.classList.toggle('popup-edit_active');
 }
 
-buttonOpen.addEventListener ('click', popUpFunc);
-// buttonClose.addEventListener ('click', popUpFunc);
+buttonEditOpen.addEventListener ('click', popUpEditFunc);
+buttonEditClose.addEventListener ('click', popUpEditFunc);
 
-// let popUpClose = function (evt) {
-// if (evt.target === evt.currentTarget) {
-//    popUpFunc (evt)
-// }
-// }
+let popUpEditClose = function (evt) {
+if (evt.target === evt.currentTarget) {
+   popUpEditFunc (evt)
+}
+}
 
-// popupWindow.addEventListener ('click', popUpClose);
+popupEditWindow.addEventListener ('click', popUpEditClose);
 
 let infoTitle = document.querySelector('.profile__visitor-name');
 let infoAttribute = document.querySelector('.profile__visitor-attribute');
 
-let formElement = document.querySelector('.popup__action-window');
+let formElementEdit = document.querySelector('.popup-edit__action-window');
 
-// let inputTitle = formElement.querySelector('.popup__profile_name');
-// let inputAttribute = formElement.querySelector('.popup__profile_attribute');
+let inputTitleEdit = formElementEdit.querySelector('.popup-edit__profile_name');
+let inputAttributeEdit = formElementEdit.querySelector('.popup-edit__profile_attribute');
 
 let nameInput = "";
 let jobInput = "";
 
-// inputTitle.value = infoTitle.textContent;
-// inputAttribute.value = infoAttribute.textContent;
+inputTitleEdit.value = infoTitle.textContent;
+inputAttributeEdit.value = infoAttribute.textContent;
 
-function formSubmitHandler (evt) {
+function formSubmitHandlerEdit (evt) {
     evt.preventDefault();    
-    nameInput = inputTitle.value;
-    jobInput = inputAttribute.value;    
+    nameInput = inputTitleEdit.value;
+    jobInput = inputAttributeEdit.value;
     infoTitle.textContent = nameInput;
     infoAttribute.textContent = jobInput;
-    popupWindow.classList.toggle('popup_active');
+    popupEditWindow.classList.toggle('popup-edit_active');
 }
 
-// formElement.addEventListener ('submit', formSubmitHandler)
+formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
 
+let buttonAddOpen = document.querySelector('.profile__add-button');
+let buttonAddClose = document.querySelector('.popup-add__action-close');
+let popupAddWindow = document.querySelector('.popup-add');
+
+let popUpAddFunc = function (evt) {
+    evt.preventDefault ();
+    popupAddWindow.classList.toggle('popup-add_active');
+}
+
+buttonAddOpen.addEventListener ('click', popUpAddFunc);
+buttonAddClose.addEventListener ('click', popUpAddFunc);
+
+let popUpAddClose = function (evt) {
+if (evt.target === evt.currentTarget) {
+   popUpAddFunc (evt)
+}
+}
+
+popupAddWindow.addEventListener ('click', popUpAddClose);
+
+// let infoTitle = document.querySelector('.profile__visitor-name');
+// let infoAttribute = document.querySelector('.profile__visitor-attribute');
+
+// let formElementEdit = document.querySelector('.popup-edit__action-window');
+
+// let inputTitleEdit = formElement.querySelector('.popup-edit__profile_name');
+// let inputAttributeEdit = formElement.querySelector('.popup-edit__profile_attribute');
+
+// let nameInput = "";
+// let jobInput = "";
+
+// inputTitleEdit.value = infoTitle.textContent;
+// inputAttributeEdit.value = infoAttribute.textContent;
+
+// function formSubmitHandlerEdit (evt) {
+//     evt.preventDefault();    
+//     nameInput = inputTitleEdit.value;
+//     jobInput = inputAttributeEdit.value;    
+//     infoTitle.textContent = nameInput;
+//     infoAttribute.textContent = jobInput;
+//     popupEditWindow.classList.toggle('popup-edit_active');
+// }
+
+// formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
