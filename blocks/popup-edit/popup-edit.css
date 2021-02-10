@@ -1,6 +1,6 @@
 .popup-edit {
     position: fixed;
-    display: none;
+    display: flex;
     align-items:center;
     justify-content:center;
     flex-direction: row;
@@ -10,6 +10,9 @@
     bottom: 0;
     z-index: 1;
     background: rgba(0, 0, 0, 0.5);
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s linear, opacity 1s linear;
 }
 
 @media screen and (max-width: 572px) {

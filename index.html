@@ -8,6 +8,7 @@
     <title>Место - Россия</title>
 </head>
 <body class="page">
+    <script src='./scripts/script.js' defer></script>
 
     <header class="header">
         <div class="header__logo">
@@ -56,16 +57,25 @@
             <button type="reset" class="popup-add__action-close"></button>
             <h2 class="popup-add__title">Новое место</h2>
             <form class="popup-add__input-container">
-                <input type="text" class="popup-add__profile popup-add__profile_name" placeholder="Название">
-                <input type="text" class="popup-add__profile popup-add__profile_attribute" placeholder="Ссылка на картинку">                    
+                <input type="text" class="popup-add__profile popup-add_name" placeholder="Название">
+                <input type="text" class="popup-add__profile popup-add_link" placeholder="Ссылка на картинку">                    
                 <button type="submit" class="popup-add__commit">Создать</button>
             </form>
         </div>
     </div>
 
+    <div class="popup-view">
+        <div class="popup-view__action-window">
+            <button type="reset" class="popup-view__action-close"></button>
+            <div class="popup-view__form">
+                <img src="" alt="" class="popup-view__image">
+                <h2 class="popup-view__title"></h2>
+            </div>           
+        </div>
+    </div>
+
     <template class="template__element">
         <div class="element">
-            <button type="button" class="element__trash"></button>
             <img src="" alt="" class="element__image">
             <div class="element__title">
                 <button type="button" class="element__trash"></button>
@@ -74,8 +84,6 @@
             </div>
         </div>  
     </template>
-
-    <script src='./scripts/script.js'></script>
-    
+   
 </body>
 </html>

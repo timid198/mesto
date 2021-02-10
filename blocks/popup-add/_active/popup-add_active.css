@@ -1,3 +1,5 @@
 .popup-add_active {
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s linear, opacity 1s linear;
 }
