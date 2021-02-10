@@ -162,8 +162,8 @@ popupViewWindow.addEventListener ('click', popUpViewClose);
 // добавление карточки вручную
 
 const formElementAdd = popupAddWindow.querySelector('.popup-add__action-window');
-const inputAddName = formElementAdd.querySelector('.popup-add_name');
-const inputAddLink = formElementAdd.querySelector('.popup-add_link');
+const inputAddName = formElementAdd.querySelector('.popup-add__profile_name');
+const inputAddLink = formElementAdd.querySelector('.popup-add__profile_link');
 
 function addCard (card) {
     listContainerEl.prepend(card);
