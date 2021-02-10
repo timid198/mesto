@@ -12,6 +12,7 @@
     <title>Место - Россия</title>
 </head>
 <body class="page">
+    <script src='./scripts/script.js' defer></script>
 
     <header class="header">
         <div class="header__logo">
@@ -35,64 +36,23 @@
         </section>
 
         <section class="elements">
-            <div class="element">
-                <img src="./images/element-moscow.jpg" alt="Москва" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Москва</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-saint_petersburg.jpg" alt="Санкт-Петербург" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Санкт-Петербург</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-kazan.jpg" alt="Казань" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Казань</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-rostow.jpg" alt="Ростов" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Ростов</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-petergof.jpg" alt="Петергоф" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Петергоф</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
-            <div class="element">
-                <img src="./images/element-smolensk.jpg" alt="Смоленск" class="element__image">
-                <div class="element__title">
-                    <h2 class="element__title-text">Смоленск</h2>
-                    <button type="submit" class="element__title-like"></button>
-                </div>
-            </div>
         </section>
     </main>
 
     <footer class="footer">
-        <article class="footer__copyright">© 2020 Mesto Russia</article>
+        <article class="footer__copyright">© 2021 Mesto Russia</article>
     </footer>
 
-    <div class="popup">
-        <div class="popup__action-window">
-            <button type="reset" class="popup__action-close"></button>
-            <h2 class="popup__title">Редактировать профиль</h2>
-            <form class="popup__input-container">
-                <input type="text" class="popup__profile popup__profile_name" placeholder="Имя">
-                <input type="text" class="popup__profile popup__profile_attribute" placeholder="О себе">                    
-                <button type="submit" value="Сохранить" class="popup__commit">Сохранить</button>
-            </form>                
+    
+    <div class="popup-edit">
+        <div class="popup-edit__action-window">
+            <button type="reset" class="popup-edit__action-close"></button>
+            <h2 class="popup-edit__title">Редактировать профиль</h2>
+            <form class="popup-edit__input-container">
+                <input type="text" class="popup-edit__profile popup-edit__profile_name" placeholder="Имя">
+                <input type="text" class="popup-edit__profile popup-edit__profile_attribute" placeholder="О себе">                    
+                <button type="submit" class="popup-edit__commit">Сохранить</button>
+            </form>
         </div>
     </div>
 <<<<<<< Updated upstream
@@ -121,7 +81,38 @@
     </template>
 >>>>>>> Stashed changes
 
-    <script src='./scripts/script.js'></script>
-    
+    <div class="popup-add">
+        <div class="popup-add__action-window">
+            <button type="reset" class="popup-add__action-close"></button>
+            <h2 class="popup-add__title">Новое место</h2>
+            <form class="popup-add__input-container">
+                <input type="text" class="popup-add__profile popup-add_name" placeholder="Название">
+                <input type="text" class="popup-add__profile popup-add_link" placeholder="Ссылка на картинку">                    
+                <button type="submit" class="popup-add__commit">Создать</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="popup-view">
+        <div class="popup-view__action-window">
+            <button type="reset" class="popup-view__action-close"></button>
+            <div class="popup-view__form">
+                <img src="" alt="" class="popup-view__image">
+                <h2 class="popup-view__title"></h2>
+            </div>           
+        </div>
+    </div>
+
+    <template class="template__element">
+        <div class="element">
+            <img src="#" alt="" class="element__image">
+            <div class="element__title">
+                <button type="button" class="element__trash"></button>
+                <h2 class="element__title-text"></h2>
+                <button type="submit" class="element__title-like"></button>
+            </div>
+        </div>  
+    </template>
+   
 </body>
 </html>

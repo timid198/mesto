@@ -1,0 +1,5 @@
+.popup-view_active {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 1s linear, opacity 1s linear;
+}
