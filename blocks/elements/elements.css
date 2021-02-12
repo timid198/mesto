@@ -3,6 +3,7 @@
     position: relative;
     padding-bottom: 67px;
     width: 100%;
+    min-width: 880px;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(3, 32.05%);
@@ -12,6 +13,7 @@
 
 @media screen and (min-width: 572px) and (max-width: 879px) {
     .elements {
+        min-width: 572px;
         grid-template-columns: repeat(2, 48.5%);
         grid-template-rows: repeat(3, 1fr);
         gap: 8px;

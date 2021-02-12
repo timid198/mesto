@@ -1,6 +1,0 @@
-.popup-view__action-window {
-    position: relative;
-    z-index: -1;
-    box-sizing: border-box;
-    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
-}

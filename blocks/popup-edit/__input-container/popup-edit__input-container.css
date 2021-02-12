@@ -4,9 +4,6 @@
     width: 100%;
     margin: 0 auto;
     padding-top: 54px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 @media screen and (max-width: 572px) {
