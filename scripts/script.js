@@ -50,7 +50,6 @@ const initialCards = [
       viewTitle.textContent = item.name;
     });
 
-
     return newCard
 }
 
@@ -73,8 +72,6 @@ function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
-
-
 buttonEditOpen.addEventListener ('click', (evt) => {evt.preventDefault(); openPopup (popupEditWindow)});
 buttonAddOpen.addEventListener ('click', (evt) => {evt.preventDefault();  openPopup (popupAddWindow)});
 
@@ -84,7 +81,6 @@ function closePopup (popup) {
   popup.classList.remove('popup_opened')
 }
 
-
 const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
@@ -92,12 +88,6 @@ const buttonViewClose = document.querySelector('.popup-view__close');
 buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupEditWindow)});
 buttonAddClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupAddWindow)});
 buttonViewClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupViewWindow)});
-
-// закрытие попапа от клика по оверлею
-
-popupEditWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupEditWindow)});
-popupAddWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupAddWindow)});
-popupViewWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupViewWindow)});
 
 // наполнение редактора содержимым страницы
 
@@ -109,19 +99,14 @@ const formElementEdit = document.querySelector('.popup-edit__window');
 const inputTitleEdit = formElementEdit.querySelector('.popup__profile_name');
 const inputAttributeEdit = formElementEdit.querySelector('.popup__profile_about');
 
-let nameInput = "";
-let jobInput = "";
-
 inputTitleEdit.value = infoTitle.textContent;
 inputAttributeEdit.value = infoAttribute.textContent;
 
 function formSubmitHandlerEdit (evt) {
     evt.preventDefault();    
-    nameInput = inputTitleEdit.value;
-    jobInput = inputAttributeEdit.value;
-    infoTitle.textContent = nameInput;
-    infoAttribute.textContent = jobInput;
-    popupEditWindow.classList.remove('popup_opened');
+    infoTitle.textContent = inputTitleEdit.value;
+    infoAttribute.textContent = inputAttributeEdit.value;
+    closePopup (popupEditWindow);
 }
 
 formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
@@ -141,7 +126,7 @@ function renderCard (evt) {
     addCard (getCard({name: inputAddName.value, link: inputAddLink.value}));
     inputAddName.value = '';
     inputAddLink.value = '';
-    popupAddWindow.classList.remove('popup_opened');
+    closePopup (popupAddWindow);
 }
 
 formElementAdd.addEventListener('submit', renderCard)

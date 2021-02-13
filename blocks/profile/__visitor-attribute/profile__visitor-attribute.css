@@ -1,5 +1,5 @@
 .profile__visitor-attribute {
-    max-width: 336px;
+    min-width: 336px;
     width: 100%;
     color: white;
     font-style: normal;
@@ -15,6 +15,7 @@
 
 @media screen and (max-width: 879px) {
     .profile__visitor-attribute {
+        align-self: center;
         text-align: center;
     }
 }

@@ -1,4 +1,5 @@
 .profile__info {
+    max-width: 336px;
     padding-left: 30px;
     align-self: center;
     display: flex;
@@ -7,6 +8,7 @@
 
 @media screen and (max-width: 879px) {
     .profile__info {
+        max-width: 282px;
         padding-left: 0;
         padding-top: 22.25px;
     }
