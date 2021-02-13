@@ -2,7 +2,7 @@
 const templateEl = document.querySelector('.template__element');
 const listContainerEl = document.querySelector('.elements');
 
-let initialCards = [
+const initialCards = [
     {
       name: 'Москва',
       link: 'https://images.unsplash.com/photo-1561217680-8cd186af7701?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=334&q=80'
@@ -37,63 +37,77 @@ let initialCards = [
     const elTitle = newCard.querySelector('.element__title-text');
     elTitle.textContent = item.name;
     
-    let buttonTrash = newCard.querySelector ('.element__trash');    
+    const buttonTrash = newCard.querySelector ('.element__trash');    
     buttonTrash.addEventListener ('click', deleteCard);
 
-    let buttonLike = newCard.querySelector('.element__title-like');
+    const buttonLike = newCard.querySelector('.element__title-like');
     buttonLike.addEventListener('click', cardLike);
 
-    function check (evt) {
-      let area = evt.target;
-      let checkArea = area.closest('.element');
-      if (evt.target === checkArea.querySelector('.element__image') || evt.target === checkArea.querySelector('.element') || evt.target === checkArea.querySelector('.element__title') || evt.target === checkArea.querySelector('.element__title-text')) {
-      popupViewWindow.classList.toggle('popup-view_active')
+    elImage.addEventListener('click', () => {
+      openPopup(popupViewWindow)
       viewImage.src = item.link;
       viewImage.alt = item.name;
       viewTitle.textContent = item.name;
-    }
-    }
-    
-    elImage.addEventListener('click', check);
+    });
+
 
     return newCard
 }
 
 function render () {
-    let html = initialCards
+  const html = initialCards
     .map(getCard);
     listContainerEl.append(...html);
 }
 
-// попап из первого задания
+// функция открытия popup
 
-let buttonEditOpen = document.querySelector('.profile__edit-button');
-let buttonEditClose = document.querySelector('.popup-edit__action-close');
-let popupEditWindow = document.querySelector('.popup-edit');
+const buttonEditOpen = document.querySelector('.profile__edit-button');
+const buttonAddOpen = document.querySelector('.profile__add-button');
+const popUp = document.querySelector('.popup');
+const popupEditWindow = document.querySelector('.popup-edit');
+const popupAddWindow = document.querySelector('.popup-add');
+const popupViewWindow = document.querySelector('.popup-view');
 
-let popUpEditFunc = function (evt) {
-    evt.preventDefault ();
-    popupEditWindow.classList.toggle('popup-edit_active');
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
 }
 
-buttonEditOpen.addEventListener ('click', popUpEditFunc);
-buttonEditClose.addEventListener ('click', popUpEditFunc);
 
-let popUpEditClose = function (evt) {
-if (evt.target === evt.currentTarget) {
-   popUpEditFunc (evt)
+
+buttonEditOpen.addEventListener ('click', (evt) => {evt.preventDefault(); openPopup (popupEditWindow)});
+buttonAddOpen.addEventListener ('click', (evt) => {evt.preventDefault();  openPopup (popupAddWindow)});
+
+// функция закрытия popup
+
+function closePopup (popup) {
+  popup.classList.remove('popup_opened')
 }
-}
 
-popupEditWindow.addEventListener ('click', popUpEditClose);
 
-let infoTitle = document.querySelector('.profile__visitor-name');
-let infoAttribute = document.querySelector('.profile__visitor-attribute');
+const buttonEditClose = document.querySelector('.popup-edit__close');
+const buttonAddClose = document.querySelector('.popup-add__close');
+const buttonViewClose = document.querySelector('.popup-view__close');
 
-let formElementEdit = document.querySelector('.popup-edit__action-window');
+buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupEditWindow)});
+buttonAddClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupAddWindow)});
+buttonViewClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupViewWindow)});
 
-let inputTitleEdit = formElementEdit.querySelector('.popup-edit__profile_name');
-let inputAttributeEdit = formElementEdit.querySelector('.popup-edit__profile_attribute');
+// закрытие попапа от клика по оверлею
+
+popupEditWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupEditWindow)});
+popupAddWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupAddWindow)});
+popupViewWindow.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupViewWindow)});
+
+// наполнение редактора содержимым страницы
+
+const infoTitle = document.querySelector('.profile__visitor-name');
+const infoAttribute = document.querySelector('.profile__visitor-attribute');
+
+const formElementEdit = document.querySelector('.popup-edit__window');
+
+const inputTitleEdit = formElementEdit.querySelector('.popup__profile_name');
+const inputAttributeEdit = formElementEdit.querySelector('.popup__profile_about');
 
 let nameInput = "";
 let jobInput = "";
@@ -107,63 +121,16 @@ function formSubmitHandlerEdit (evt) {
     jobInput = inputAttributeEdit.value;
     infoTitle.textContent = nameInput;
     infoAttribute.textContent = jobInput;
-    popupEditWindow.classList.toggle('popup-edit_active');
+    popupEditWindow.classList.remove('popup_opened');
 }
 
 formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
 
-// попап из второго задания на добавление карточек
+// попап на добавление карточек
 
-let buttonAddOpen = document.querySelector('.profile__add-button');
-let buttonAddClose = document.querySelector('.popup-add__action-close');
-let popupAddWindow = document.querySelector('.popup-add');
-
-let popUpAddFunc = function (evt) {
-    evt.preventDefault ();
-    popupAddWindow.classList.toggle('popup-add_active');
-}
-
-buttonAddOpen.addEventListener ('click', popUpAddFunc);
-buttonAddClose.addEventListener ('click', popUpAddFunc);
-
-let popUpAddClose = function (evt) {
-if (evt.target === evt.currentTarget) {
-   popUpAddFunc (evt)
-}
-}
-
-popupAddWindow.addEventListener ('click', popUpAddClose);
-
-// переменные просмотрщика
-
-let viewImage = document.querySelector('.popup-view__image');
-let viewTitle = document.querySelector('.popup-view__title');
-
-// закрытие попапа просмотра карточек
-
-let popupViewWindow = document.querySelector('.popup-view');
-let popupViewClose = document.querySelector('.popup-view__action-close');
-
-let popUpViewFunc = function (evt) {
-  evt.preventDefault ();
-  popupViewWindow.classList.toggle('popup-view_active');
-}
-
-popupViewClose.addEventListener ('click', popUpViewFunc);
-
-let popUpViewClose = function (evt) {
-if (evt.target === evt.currentTarget) {
- popUpViewFunc (evt)
-}
-}
-
-popupViewWindow.addEventListener ('click', popUpViewClose);
-
-// добавление карточки вручную
-
-const formElementAdd = popupAddWindow.querySelector('.popup-add__action-window');
-const inputAddName = formElementAdd.querySelector('.popup-add__profile_name');
-const inputAddLink = formElementAdd.querySelector('.popup-add__profile_link');
+const formElementAdd = popupAddWindow.querySelector('.popup-add__window');
+const inputAddName = formElementAdd.querySelector('.popup__profile_title');
+const inputAddLink = formElementAdd.querySelector('.popup__profile_link');
 
 function addCard (card) {
     listContainerEl.prepend(card);
@@ -174,7 +141,7 @@ function renderCard (evt) {
     addCard (getCard({name: inputAddName.value, link: inputAddLink.value}));
     inputAddName.value = '';
     inputAddLink.value = '';
-    popupAddWindow.classList.toggle('popup-add_active');
+    popupAddWindow.classList.remove('popup_opened');
 }
 
 formElementAdd.addEventListener('submit', renderCard)
@@ -195,7 +162,9 @@ function cardLike (evt) {
   targetedLike.classList.toggle('element__title-like_set');
 }
 
+// переменные просмотрщика карточек
 
+const viewImage = document.querySelector('.popup-view__image');
+const viewTitle = document.querySelector('.popup-view__title');
 
 render ();
-// отрисовано

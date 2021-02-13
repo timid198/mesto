@@ -4,9 +4,6 @@
     justify-content:center;
     flex-direction: row;
     background: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-    opacity: 0;
-    transition: visibility 1s linear, opacity 1s linear;
 }
 
 @media screen and (max-width: 572px) {
