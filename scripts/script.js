@@ -85,7 +85,7 @@ const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
 
-buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupEditWindow)});
+buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault(); inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; closePopup (popupEditWindow)});
 buttonAddClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupAddWindow)});
 buttonViewClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupViewWindow)});
 
@@ -98,9 +98,6 @@ const formElementEdit = document.querySelector('.popup-edit__window');
 
 const inputTitleEdit = formElementEdit.querySelector('.popup__profile_name');
 const inputAttributeEdit = formElementEdit.querySelector('.popup__profile_about');
-
-inputTitleEdit.value = infoTitle.textContent;
-inputAttributeEdit.value = infoAttribute.textContent;
 
 function formSubmitHandlerEdit (evt) {
     evt.preventDefault();    
