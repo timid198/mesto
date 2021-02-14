@@ -72,7 +72,7 @@ function openPopup (popup) {
   popup.classList.add('popup_opened');
 }
 
-buttonEditOpen.addEventListener ('click', (evt) => {evt.preventDefault(); openPopup (popupEditWindow)});
+buttonEditOpen.addEventListener ('click', (evt) => {evt.preventDefault(); inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; openPopup (popupEditWindow)});
 buttonAddOpen.addEventListener ('click', (evt) => {evt.preventDefault();  openPopup (popupAddWindow)});
 
 // функция закрытия popup
@@ -85,7 +85,7 @@ const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
 
-buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault(); inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; closePopup (popupEditWindow)});
+buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupEditWindow)});
 buttonAddClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupAddWindow)});
 buttonViewClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupViewWindow)});
 
@@ -139,8 +139,8 @@ function deleteCard (evt) {
 // кнопка лайк
 
 function cardLike (evt) {
-  let targetLike = evt.target;
-  let targetedLike = targetLike.closest('.element__title-like');
+  const targetLike = evt.target;
+  const targetedLike = targetLike.closest('.element__title-like');
   targetedLike.classList.toggle('element__title-like_set');
 }
 
