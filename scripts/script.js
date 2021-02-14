@@ -63,7 +63,6 @@ function render () {
 
 const buttonEditOpen = document.querySelector('.profile__edit-button');
 const buttonAddOpen = document.querySelector('.profile__add-button');
-const popUp = document.querySelector('.popup');
 const popupEditWindow = document.querySelector('.popup-edit');
 const popupAddWindow = document.querySelector('.popup-add');
 const popupViewWindow = document.querySelector('.popup-view');
