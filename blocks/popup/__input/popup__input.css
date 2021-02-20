@@ -1,4 +1,4 @@
-.popup__profile {
+.popup__input {
     width: 100%;
     border-top: none;
     border-left: none;
@@ -12,6 +12,6 @@
     color: #000000;
 }
 
-.popup__profile:focus {
+.popup__input:focus {
     outline: none;
 }

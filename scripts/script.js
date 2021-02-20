@@ -95,8 +95,8 @@ const infoAttribute = document.querySelector('.profile__visitor-attribute');
 
 const formElementEdit = document.querySelector('.popup-edit__window');
 
-const inputTitleEdit = formElementEdit.querySelector('.popup__profile_name');
-const inputAttributeEdit = formElementEdit.querySelector('.popup__profile_about');
+const inputTitleEdit = formElementEdit.querySelector('.popup__input_name');
+const inputAttributeEdit = formElementEdit.querySelector('.popup__input_about');
 
 function formSubmitHandlerEdit (evt) {
     evt.preventDefault();    
@@ -110,8 +110,8 @@ formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
 // попап на добавление карточек
 
 const formElementAdd = popupAddWindow.querySelector('.popup-add__window');
-const inputAddName = formElementAdd.querySelector('.popup__profile_title');
-const inputAddLink = formElementAdd.querySelector('.popup__profile_link');
+const inputAddName = formElementAdd.querySelector('.popup__input_title');
+const inputAddLink = formElementAdd.querySelector('.popup__input_link');
 
 function addCard (card) {
     listContainerEl.prepend(card);
