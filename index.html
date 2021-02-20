@@ -9,7 +9,7 @@
 </head>
 <body class="page">
     <script src='./scripts/script.js' defer></script>
-
+    <script src='./scripts/validate.js' defer></script>
     <header class="header">
         <div class="header__logo">
         </div>
@@ -44,9 +44,9 @@
         <div class="popup-edit__action-window">
             <button type="reset" class="popup-edit__action-close"></button>
             <h2 class="popup-edit__title">Редактировать профиль</h2>
-            <form class="popup-edit__input-container">
-                <input type="text" class="popup-edit__profile popup-edit__profile_name" placeholder="Имя">
-                <input type="text" class="popup-edit__profile popup-edit__profile_attribute" placeholder="О себе">                    
+            <form class="popup-edit__input-container" novalidate>
+                <input type="text" class="popup-edit__profile popup-edit__profile_name" placeholder="Имя" minlength = "2" maxlength = "40" required>
+                <input type="text" class="popup-edit__profile popup-edit__profile_attribute" placeholder="О себе" minlength = "2" maxlength = "200" required>                    
                 <button type="submit" class="popup-edit__commit">Сохранить</button>
             </form>
         </div>
@@ -56,9 +56,9 @@
         <div class="popup-add__action-window">
             <button type="reset" class="popup-add__action-close"></button>
             <h2 class="popup-add__title">Новое место</h2>
-            <form class="popup-add__input-container">
-                <input type="text" class="popup-add__profile popup-add__profile_name" placeholder="Название">
-                <input type="text" class="popup-add__profile popup-add__profile_link" placeholder="Ссылка на картинку">                    
+            <form class="popup-add__input-container" novalidate>
+                <input type="text" class="popup-add__profile popup-add__profile_name" placeholder="Название" minlength = "2" maxlength = "30" required>
+                <input type="text" class="popup-add__profile popup-add__profile_link" type="url" placeholder="Ссылка на картинку" required>                    
                 <button type="submit" class="popup-add__commit">Создать</button>
             </form>
         </div>

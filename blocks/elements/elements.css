@@ -2,6 +2,7 @@
     grid-area: elements;
     position: relative;
     padding-bottom: 67px;
+    min-width: 880px;
     width: 100%;
     display: grid;
     justify-content: center;
