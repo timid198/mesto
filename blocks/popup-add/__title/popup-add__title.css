@@ -1,8 +1,4 @@
 .popup-add__title {
-    position: relative;
-    padding-top: 34px;
-    padding-left: 36px;
-    margin: 0;
     font-style: normal;
     font-weight: 900;
     font-size: 24px;
@@ -12,8 +8,6 @@
 
 @media screen and (max-width: 572px) {
     .popup-add__title {
-        padding-top: 25px;
-        padding-left: 22px;
         font-size: 18px;
         line-height: 22px;
     }
