@@ -45,9 +45,13 @@
             <button type="reset" class="popup__close popup-edit__close"></button>
             <h2 class="popup__title popup-edit__title">Редактировать профиль</h2>
             <form class="popup__form popup-edit__form" novalidate>
-                <input type="text" class="popup__input popup__input_name" placeholder="Имя" minlength = "2" maxlength = "40" required>
-                <input type="text" class="popup__input popup__input_about" placeholder="О себе" minlength = "2" maxlength = "200" required>                    
-                <button type="submit" class="popup__button">Сохранить</button>
+                <fieldset class="popup__set">
+                    <input type="text" id="name" class="popup__input popup__input_name" placeholder="Имя" minlength = "2" maxlength = "40" required>
+                    <span class="popup__error" id="name-error"></span>
+                    <input type="text" id="about" class="popup__input popup__input_about" placeholder="О себе" minlength = "2" maxlength = "200" required>                    
+                    <span class="popup__error" id="about-error"></span>
+                    <button type="submit" class="popup__button">Сохранить</button>
+                </fieldset>
             </form>
         </div>
     </div>
@@ -57,9 +61,13 @@
             <button type="reset" class="popup__close popup-add__close"></button>
             <h2 class="popup__title popup-add__title">Новое место</h2>
             <form class="popup__form popup-add__form" novalidate>
-                <input type="text" class="popup__input popup__input_title" placeholder="Название" minlength = "2" maxlength = "30" required>
-                <input type="text" class="popup__input popup__input_link" type="url" placeholder="Ссылка на картинку" required>                    
-                <button type="submit" class="popup__button">Создать</button>
+                <fieldset class="popup__set">
+                    <input type="text" id="title" class="popup__input popup__input_title" placeholder="Название" minlength = "2" maxlength = "30" required>
+                    <span class="popup__error" id="title-error"></span>
+                    <input type="text" id="link" class="popup__input popup__input_link" type="url" placeholder="Ссылка на картинку" required>                    
+                    <span class="popup__error" id="link-error"></span>
+                    <button type="submit" class="popup__button">Создать</button>
+                </fieldset>
             </form>
         </div>
     </div>
