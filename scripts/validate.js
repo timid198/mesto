@@ -1,3 +1,4 @@
+//показ стандартных сообщений об ошибке и выделение инпута при невалидном вводе
 const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {
   const formSectionElement = inputElement.closest(".popup__section");
   const errorElement = formSectionElement.querySelector(".popup__error");
@@ -6,6 +7,7 @@ const showInputError = (formElement, inputElement, errorMessage, validationSetti
   errorElement.classList.add(validationSettings.errorClass);
 };
 
+//скрытие стандартных сообщений об ошибке и выделение инпута при невалидном вводе
 const hideInputError = (formElement, inputElement, validationSettings) => {
   const formSectionElement = inputElement.closest(".popup__section");
   const errorElement = formSectionElement.querySelector(".popup__error");
@@ -14,6 +16,7 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
   errorElement.textContent = '';
 };
 
+//проверка правильности ввода
 const checkInputValidity = (formElement, inputElement, validationSettings) => {
   
   const isInputNotValid = !inputElement.validity.valid;
@@ -26,6 +29,7 @@ const checkInputValidity = (formElement, inputElement, validationSettings) => {
   }
 };
 
+//активная и неактивная кнопка
 const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
   const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
@@ -37,6 +41,7 @@ const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   }
 };
 
+//расстановка слушателей методов по инпутам
 const setEventListeners = (formElement, validationSettings) => {
   const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
   const buttonElement = formElement.querySelector(validationSettings.submitButtonSelector);
@@ -51,6 +56,7 @@ const setEventListeners = (formElement, validationSettings) => {
   toggleButtonState(inputList, buttonElement, validationSettings);
 };
 
+//выборка форм инпутов из разметки
 const enableValidation = (validationSettings) => {
   const formElements = document.querySelectorAll(validationSettings.formSelector);
   const formList = Array.from(formElements);
@@ -59,6 +65,7 @@ const enableValidation = (validationSettings) => {
     setEventListeners(formElement, validationSettings);
   });
 };
+
 
 enableValidation({
   formSelector: '.popup__form',
