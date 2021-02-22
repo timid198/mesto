@@ -18,7 +18,7 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
 
 //проверка правильности ввода
 const checkInputValidity = (formElement, inputElement, validationSettings) => {
-  
+
   const isInputNotValid = !inputElement.validity.valid;
 
   if (isInputNotValid) {
@@ -35,8 +35,10 @@ const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
 
   if (hasNotValidInput) {
+    buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
   } else {
+    buttonElement.removeAttribute("disabled");
     buttonElement.classList.remove(validationSettings.inactiveButtonClass);
   }
 };
@@ -74,4 +76,4 @@ enableValidation({
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible'
-}); 
+});
