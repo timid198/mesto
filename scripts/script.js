@@ -113,12 +113,12 @@ function formSubmitFill () {
 
 formSubmitFill();
 
-function formSubmitHandlerEdit (evt) {    
-    infoTitle.textContent = inputTitleEdit.value;
-    infoAttribute.textContent = inputAttributeEdit.value;
-    formSubmitFill()
-    evt.preventDefault(); 
-    closePopup (popupEditWindow);
+function formSubmitHandlerEdit (evt) {
+  formSubmitFill()    
+  infoTitle.textContent = inputTitleEdit.value;
+  infoAttribute.textContent = inputAttributeEdit.value;    
+  evt.preventDefault(); 
+  closePopup (popupEditWindow);
 }
 
 formElementEdit.addEventListener ('submit', formSubmitHandlerEdit)
