@@ -78,7 +78,7 @@ function openPopup (popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener ('click', (evt) => {inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; openPopup (popupEditWindow)});
+buttonEditOpen.addEventListener ('click', (evt) => {openPopup (popupEditWindow)});
 buttonAddOpen.addEventListener ('click', (evt) => {openPopup (popupAddWindow)});
 
 // функция закрытия popup
@@ -106,10 +106,18 @@ const formElementEdit = document.querySelector('.popup-edit__window');
 const inputTitleEdit = formElementEdit.querySelector('.popup__input_name');
 const inputAttributeEdit = formElementEdit.querySelector('.popup__input_about');
 
-function formSubmitHandlerEdit (evt) {
-    evt.preventDefault(); 
+function formSubmitFill () {
+  inputTitleEdit.value = infoTitle.textContent; 
+  inputAttributeEdit.value = infoAttribute.textContent;
+}
+
+formSubmitFill();
+
+function formSubmitHandlerEdit (evt) {    
     infoTitle.textContent = inputTitleEdit.value;
     infoAttribute.textContent = inputAttributeEdit.value;
+    formSubmitFill()
+    evt.preventDefault(); 
     closePopup (popupEditWindow);
 }
 
