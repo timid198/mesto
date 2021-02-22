@@ -8,8 +8,9 @@
     <title>Место - Россия</title>
 </head>
 <body class="page">
+    
     <script src='./scripts/script.js' defer></script>
-    <script src='./scripts/validate.js' defer></script>
+    
     <header class="header">
         <div class="header__logo">
         </div>
@@ -45,13 +46,15 @@
             <button type="reset" class="popup__close popup-edit__close"></button>
             <h2 class="popup__title popup-edit__title">Редактировать профиль</h2>
             <form class="popup__form popup-edit__form" novalidate>
-                <fieldset class="popup__set">
+                <section class="popup__section">
                     <input type="text" id="name" class="popup__input popup__input_name" placeholder="Имя" minlength = "2" maxlength = "40" required>
-                    <span class="popup__error" id="name-error"></span>
+                    <span class="popup__error" id="name-error"> </span>
+                </section>
+                <section class="popup__section">
                     <input type="text" id="about" class="popup__input popup__input_about" placeholder="О себе" minlength = "2" maxlength = "200" required>                    
-                    <span class="popup__error" id="about-error"></span>
-                    <button type="submit" class="popup__button">Сохранить</button>
-                </fieldset>
+                    <span class="popup__error" id="about-error"> </span>
+                </section>
+                    <button type="submit" class="popup__button">Сохранить</button>                
             </form>
         </div>
     </div>
@@ -61,13 +64,18 @@
             <button type="reset" class="popup__close popup-add__close"></button>
             <h2 class="popup__title popup-add__title">Новое место</h2>
             <form class="popup__form popup-add__form" novalidate>
-                <fieldset class="popup__set">
+                <section class="popup__section">
                     <input type="text" id="title" class="popup__input popup__input_title" placeholder="Название" minlength = "2" maxlength = "30" required>
                     <span class="popup__error" id="title-error"></span>
+<<<<<<< HEAD
+=======
+                </section>
+                <section class="popup__section">
+>>>>>>> f90c93a57d1a7a730fdc505149ea6fb8769a3928
                     <input type="url" id="link" class="popup__input popup__input_link" placeholder="Ссылка на картинку" required>                    
                     <span class="popup__error" id="link-error"></span>
-                    <button type="submit" class="popup__button">Создать</button>
-                </fieldset>
+                </section>
+                <button type="submit" class="popup__button">Создать</button>                
             </form>
         </div>
     </div>
@@ -92,6 +100,8 @@
             </div>
         </div>  
     </template>
+
+    <script src='./scripts/validate.js'></script>
    
 </body>
 </html>
