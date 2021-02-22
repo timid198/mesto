@@ -67,26 +67,34 @@ const popupEditWindow = document.querySelector('.popup-edit');
 const popupAddWindow = document.querySelector('.popup-add');
 const popupViewWindow = document.querySelector('.popup-view');
 
-function openPopup (popup) {
-  popup.classList.add('popup_opened');
+function escapeClose (evt) {
+  if (evt.keyCode === 27){
+    closePopup(document.querySelector('.popup_opened'));
+  }
 }
 
-buttonEditOpen.addEventListener ('click', (evt) => {evt.preventDefault(); inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; openPopup (popupEditWindow)});
-buttonAddOpen.addEventListener ('click', (evt) => {evt.preventDefault();  openPopup (popupAddWindow)});
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', escapeClose);
+}
+
+buttonEditOpen.addEventListener ('click', (evt) => {inputTitleEdit.value = infoTitle.textContent; inputAttributeEdit.value = infoAttribute.textContent; openPopup (popupEditWindow)});
+buttonAddOpen.addEventListener ('click', (evt) => {openPopup (popupAddWindow)});
 
 // функция закрытия popup
 
 function closePopup (popup) {
-  popup.classList.remove('popup_opened')
+  popup.classList.remove('popup_opened');
+  document.removeEventListener('keydown', escapeClose);
 }
 
 const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
 
-buttonEditClose.addEventListener ('click', (evt) => {evt.preventDefault(); closePopup (popupEditWindow)});
-buttonAddClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupAddWindow)});
-buttonViewClose.addEventListener ('click', (evt) => {evt.preventDefault();  closePopup (popupViewWindow)});
+buttonEditClose.addEventListener ('click', (evt) => {closePopup (popupEditWindow)});
+buttonAddClose.addEventListener ('click', (evt) => {closePopup (popupAddWindow)});
+buttonViewClose.addEventListener ('click', (evt) => {closePopup (popupViewWindow)});
 
 // наполнение редактора содержимым страницы
 
@@ -99,7 +107,7 @@ const inputTitleEdit = formElementEdit.querySelector('.popup__input_name');
 const inputAttributeEdit = formElementEdit.querySelector('.popup__input_about');
 
 function formSubmitHandlerEdit (evt) {
-    evt.preventDefault();    
+    evt.preventDefault(); 
     infoTitle.textContent = inputTitleEdit.value;
     infoAttribute.textContent = inputAttributeEdit.value;
     closePopup (popupEditWindow);
@@ -147,5 +155,11 @@ function cardLike (evt) {
 
 const viewImage = document.querySelector('.popup-view__image');
 const viewTitle = document.querySelector('.popup-view__title');
+
+//закрытие при миссклике
+
+popupEditWindow.addEventListener('click', (evt) => {if(evt.target === evt.currentTarget) {closePopup (popupEditWindow)}});
+popupAddWindow.addEventListener('click', (evt) => {if(evt.target === evt.currentTarget) {closePopup (popupAddWindow)}});
+popupViewWindow.addEventListener('click', (evt) => {if(evt.target === evt.currentTarget) {closePopup (popupViewWindow)}});
 
 render ();
