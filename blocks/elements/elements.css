@@ -4,7 +4,6 @@
     padding-bottom: 67px;
     min-width: 880px;
     width: 100%;
-    min-width: 880px;
     display: grid;
     justify-content: center;
     grid-template-columns: repeat(3, 32.05%);
