@@ -49,11 +49,13 @@
 @import url(./../blocks/popup-view/__form/popup-view__form.css);
 @import url(./../blocks/popup-view/__close/popup-view__close.css);
 @import url(./../blocks/popup-edit/popup-edit.css);
+@import url(./../blocks/popup-edit/__button/popup-edit__button.css);
 @import url(./../blocks/popup-edit/__window/popup-edit__window.css);
 @import url(./../blocks/popup-edit/__title/popup-edit__title.css);
 @import url(./../blocks/popup-edit/__form/popup-edit__form.css);
 @import url(./../blocks/popup-edit/__close/popup-edit__close.css);
 @import url(./../blocks/popup-add/popup-add.css);
+@import url(./../blocks/popup-add/__button/popup-add__button.css);
 @import url(./../blocks/popup-add/__window/popup-add__window.css);
 @import url(./../blocks/popup-add/__title/popup-add__title.css);
 @import url(./../blocks/popup-add/__form/popup-add__form.css);

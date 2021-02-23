@@ -16,10 +16,19 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
   errorElement.textContent = '';
 };
 
+<<<<<<< HEAD
 //проверка правильности ввода
 const checkInputValidity = (formElement, inputElement, validationSettings) => {
   const isInputNotValid = !inputElement.validity.valid;
   if (isInputNotValid) {
+=======
+//
+const isInputNotValid = (inputElement) => !inputElement.validity.valid;
+
+//проверка правильности ввода
+const checkInputValidity = (formElement, inputElement, validationSettings) => {  
+  if (isInputNotValid(inputElement)) {
+>>>>>>> b19c3cbfac1755203e3936c6a07a14ff6c90a784
     const errorMessage = inputElement.validationMessage;
     showInputError(formElement, inputElement, errorMessage, validationSettings);
   } else {
@@ -27,11 +36,20 @@ const checkInputValidity = (formElement, inputElement, validationSettings) => {
   }
 };
 
+<<<<<<< HEAD
 //активная и неактивная кнопка
 const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
   const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
   if (hasNotValidInput) {
+=======
+//функция проверки заполненности полей ввода
+const hasNotValidInput = (inputList) => {return inputList.some((inputElement) => (!inputElement.validity.valid))};
+
+//активная и неактивная кнопка
+const toggleButtonState = (inputList, buttonElement, validationSettings) => {  
+  if (hasNotValidInput(inputList)) {
+>>>>>>> b19c3cbfac1755203e3936c6a07a14ff6c90a784
     buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
   } else {
@@ -68,5 +86,51 @@ enableValidation({
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',
   inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
+  errorClass: 'popup__error_visible',
 });
+
+//popup-add__button проверка ввода
+function deactivateAddButton () {
+  const addForm = document.querySelector('.popup-add__form');
+  const buttonSubmitAdd = addForm.querySelector('.popup-add__button');
+  const inputListAddForm = Array.from(addForm.querySelectorAll('.popup__input'));
+  const errorElListAddForm = Array.from(addForm.querySelectorAll('.popup__error'));
+  if (hasNotValidInput(inputListAddForm)) {
+    buttonSubmitAdd.setAttribute("disabled", true);
+    buttonSubmitAdd.classList.add('popup__button_disabled');
+    inputListAddForm.forEach((inputEl) => {
+      inputEl.classList.remove('popup__input_type_error');
+      inputEl.value='';
+    });
+    errorElListAddForm.forEach((errorEl) => {
+      errorEl.classList.remove('popup__error_visible');
+      errorEl.textContent = '';
+    })
+  } else {
+    buttonSubmitAdd.removeAttribute("disabled");
+    buttonSubmitAdd.classList.remove('popup__button_disabled');
+  }
+}
+deactivateAddButton ();
+//popup-edit__button проверка ввода
+function deactivateEditButton () {
+  if (!inputTitleEdit.value.valid && !inputAttributeEdit.value.valid) {
+    buttonSubmitEdit.removeAttribute("disabled", true);
+    buttonSubmitEdit.classList.remove('popup__button_disabled');
+  } else {
+    buttonSubmitEdit.setAttribute("disabled", true);
+    buttonSubmitEdit.classList.add('popup__button_disabled');    
+  }
+}
+
+// if (buttonElement.classList.contains('popup-add__button')) {
+//   if (hasNotValidInput(inputList)) {
+//     buttonElement.setAttribute("disabled", true);
+//     buttonElement.classList.add(validationSettings.inactiveButtonClass);
+//   } else {
+//     buttonElement.removeAttribute("disabled");
+//     buttonElement.classList.remove(validationSettings.inactiveButtonClass);
+//   }
+//   inputAddName.value = '';
+//   inputAddLink.value = '';
+// }

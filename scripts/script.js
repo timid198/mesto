@@ -2,6 +2,8 @@ const templateEl = document.querySelector('.template__element');
 const listContainerEl = document.querySelector('.elements');
 const buttonEditOpen = document.querySelector('.profile__edit-button');
 const buttonAddOpen = document.querySelector('.profile__add-button');
+const buttonSubmitEdit = document.querySelector('.popup-edit__button');
+const buttonSubmitAdd = document.querySelector('.popup-add__button');
 const popupEditWindow = document.querySelector('.popup-edit');
 const popupAddWindow = document.querySelector('.popup-add');
 const popupViewWindow = document.querySelector('.popup-view');
@@ -61,8 +63,8 @@ function openPopup(popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener('click', (evt) => {openPopup(popupEditWindow)});
-buttonAddOpen.addEventListener('click', (evt) => {openPopup(popupAddWindow)});
+buttonEditOpen.addEventListener('click', (evt) => { fillFormEdit(); openPopup(popupEditWindow) });
+buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow) });
 
 // функция закрытия popup
 
@@ -77,13 +79,16 @@ buttonViewClose.addEventListener('click', (evt) => { closePopup(popupViewWindow)
 
 // наполнение редактора содержимым страницы
 
-inputTitleEdit.value = infoTitle.textContent;
-inputAttributeEdit.value = infoAttribute.textContent;
+function fillFormEdit() {
+  inputTitleEdit.value = infoTitle.textContent;
+  inputAttributeEdit.value = infoAttribute.textContent;
+  deactivateEditButton()
+}
 
 function handlerFormSubmitEdit(evt) {
+  evt.preventDefault();
   infoTitle.textContent = inputTitleEdit.value;
   infoAttribute.textContent = inputAttributeEdit.value;
-  evt.preventDefault();
   closePopup(popupEditWindow);
 }
 
@@ -96,19 +101,12 @@ function addCard(card) {
 }
 
 function renderCard(evt) {
-  evt.preventDefault();
   addCard(getCard({ name: inputAddName.value, link: inputAddLink.value }));
+  deactivateAddButton();
   inputAddName.value = '';
   inputAddLink.value = '';
-  enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  });
   closePopup(popupAddWindow);
+  evt.preventDefault();
 }
 
 formElementAdd.addEventListener('submit', renderCard)
