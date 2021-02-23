@@ -18,9 +18,7 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
 
 //проверка правильности ввода
 const checkInputValidity = (formElement, inputElement, validationSettings) => {
-
   const isInputNotValid = !inputElement.validity.valid;
-
   if (isInputNotValid) {
     const errorMessage = inputElement.validationMessage;
     showInputError(formElement, inputElement, errorMessage, validationSettings);
@@ -33,7 +31,6 @@ const checkInputValidity = (formElement, inputElement, validationSettings) => {
 const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
   const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
-
   if (hasNotValidInput) {
     buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
@@ -47,14 +44,12 @@ const toggleButtonState = (inputList, buttonElement, validationSettings) => {
 const setEventListeners = (formElement, validationSettings) => {
   const inputList = Array.from(formElement.querySelectorAll(validationSettings.inputSelector));
   const buttonElement = formElement.querySelector(validationSettings.submitButtonSelector);
-
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", () => {
       checkInputValidity(formElement, inputElement, validationSettings);
       toggleButtonState(inputList, buttonElement, validationSettings);
     });
   });
-
   toggleButtonState(inputList, buttonElement, validationSettings);
 };
 
@@ -62,12 +57,10 @@ const setEventListeners = (formElement, validationSettings) => {
 const enableValidation = (validationSettings) => {
   const formElements = document.querySelectorAll(validationSettings.formSelector);
   const formList = Array.from(formElements);
-
   formList.forEach((formElement) => {
     setEventListeners(formElement, validationSettings);
   });
 };
-
 
 enableValidation({
   formSelector: '.popup__form',
