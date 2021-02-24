@@ -48,8 +48,6 @@ const initialCards = [
   }
 ];
 
-
-
 // функция открытия popup
 
 function escapeClose(evt) {
@@ -63,8 +61,8 @@ function openPopup(popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener('click', (evt) => { fillFormEdit(); openPopup(popupEditWindow) });
-buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow) });
+buttonEditOpen.addEventListener('click', (evt) => { fillFormEdit(savingButton); openPopup(popupEditWindow) });
+buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow); buttonAddValidation(buttonEl) });
 
 // функция закрытия popup
 
@@ -79,11 +77,7 @@ buttonViewClose.addEventListener('click', (evt) => { closePopup(popupViewWindow)
 
 // наполнение редактора содержимым страницы
 
-function fillFormEdit() {
-  inputTitleEdit.value = infoTitle.textContent;
-  inputAttributeEdit.value = infoAttribute.textContent;
-  deactivateEditButton()
-}
+
 
 function handlerFormSubmitEdit(evt) {
   evt.preventDefault();
@@ -101,12 +95,11 @@ function addCard(card) {
 }
 
 function renderCard(evt) {
+  evt.preventDefault();
   addCard(getCard({ name: inputAddName.value, link: inputAddLink.value }));
-  deactivateAddButton();
   inputAddName.value = '';
   inputAddLink.value = '';
   closePopup(popupAddWindow);
-  evt.preventDefault();
 }
 
 formElementAdd.addEventListener('submit', renderCard)

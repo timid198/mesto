@@ -1,3 +1,41 @@
+const buttonEl = document.querySelector('.popup-add__button');
+const savingButton = document.querySelector('.popup-edit__button');
+
+//функция проверки кнопки подтверждения действия в popup__add
+
+const buttonAddValidation = (buttonElem) => {
+  const addInputTitle = document.querySelector('.popup__input_title');
+  const addInputLink = document.querySelector('.popup__input_link');
+  const formNewPlace = document.querySelector('.popup-add__form');
+  const errorList = Array.from(formNewPlace.querySelectorAll('.popup__error_visible'));
+  addInputTitle.value = '';
+  addInputLink.value = '';
+  buttonElem.setAttribute("disabled", true);
+  buttonElem.classList.add('popup__button_disabled');
+  addInputTitle.classList.remove('popup__input_type_error');
+  addInputLink.classList.remove('popup__input_type_error');
+  errorList.forEach((errorEl) => { errorEl.classList.remove('popup__error_visible'); errorEl.textContent = ''; });
+}
+
+//функция проверки кнопки подтверждения действия в popup__edit
+
+function fillFormEdit(buttonElem) {
+  const editProfileForm = document.querySelector('.popup-edit__form');
+  const inputListEditProfileForm = Array.from(editProfileForm.querySelectorAll('.popup__input'));
+  const errorListEditProfileForm = Array.from(editProfileForm.querySelectorAll('.popup__error_visible'));
+  inputTitleEdit.value = infoTitle.textContent;
+  inputAttributeEdit.value = infoAttribute.textContent;
+  if (hasNotValidInput(inputListEditProfileForm)) {
+    buttonElem.setAttribute("disabled", true);
+    buttonElem.classList.add('popup__button_disabled');
+  } else {
+    buttonElem.removeAttribute("disabled");
+    buttonElem.classList.remove('popup__button_disabled');
+    errorListEditProfileForm.forEach((errorEl) => { errorEl.classList.remove('popup__error_visible'); errorEl.textContent = ''; });
+    inputListEditProfileForm.forEach((inputEl) => { inputEl.classList.remove('popup__input_type_error') });
+  }
+}
+
 //показ стандартных сообщений об ошибке и выделение инпута при невалидном вводе
 const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {
   const formSectionElement = inputElement.closest(".popup__section");
@@ -16,19 +54,10 @@ const hideInputError = (formElement, inputElement, validationSettings) => {
   errorElement.textContent = '';
 };
 
-<<<<<<< HEAD
 //проверка правильности ввода
 const checkInputValidity = (formElement, inputElement, validationSettings) => {
   const isInputNotValid = !inputElement.validity.valid;
   if (isInputNotValid) {
-=======
-//
-const isInputNotValid = (inputElement) => !inputElement.validity.valid;
-
-//проверка правильности ввода
-const checkInputValidity = (formElement, inputElement, validationSettings) => {  
-  if (isInputNotValid(inputElement)) {
->>>>>>> b19c3cbfac1755203e3936c6a07a14ff6c90a784
     const errorMessage = inputElement.validationMessage;
     showInputError(formElement, inputElement, errorMessage, validationSettings);
   } else {
@@ -36,20 +65,11 @@ const checkInputValidity = (formElement, inputElement, validationSettings) => {
   }
 };
 
-<<<<<<< HEAD
 //активная и неактивная кнопка
-const toggleButtonState = (inputList, buttonElement, validationSettings) => {
-  const findAtLeastOneNotValid = (inputElement) => !inputElement.validity.valid;
-  const hasNotValidInput = inputList.some(findAtLeastOneNotValid);
-  if (hasNotValidInput) {
-=======
-//функция проверки заполненности полей ввода
-const hasNotValidInput = (inputList) => {return inputList.some((inputElement) => (!inputElement.validity.valid))};
+const hasNotValidInput = (inputList) => { return inputList.some((inputElement) => { return !inputElement.validity.valid }) };
 
-//активная и неактивная кнопка
-const toggleButtonState = (inputList, buttonElement, validationSettings) => {  
+const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   if (hasNotValidInput(inputList)) {
->>>>>>> b19c3cbfac1755203e3936c6a07a14ff6c90a784
     buttonElement.setAttribute("disabled", true);
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
   } else {
@@ -88,49 +108,3 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
 });
-
-//popup-add__button проверка ввода
-function deactivateAddButton () {
-  const addForm = document.querySelector('.popup-add__form');
-  const buttonSubmitAdd = addForm.querySelector('.popup-add__button');
-  const inputListAddForm = Array.from(addForm.querySelectorAll('.popup__input'));
-  const errorElListAddForm = Array.from(addForm.querySelectorAll('.popup__error'));
-  if (hasNotValidInput(inputListAddForm)) {
-    buttonSubmitAdd.setAttribute("disabled", true);
-    buttonSubmitAdd.classList.add('popup__button_disabled');
-    inputListAddForm.forEach((inputEl) => {
-      inputEl.classList.remove('popup__input_type_error');
-      inputEl.value='';
-    });
-    errorElListAddForm.forEach((errorEl) => {
-      errorEl.classList.remove('popup__error_visible');
-      errorEl.textContent = '';
-    })
-  } else {
-    buttonSubmitAdd.removeAttribute("disabled");
-    buttonSubmitAdd.classList.remove('popup__button_disabled');
-  }
-}
-deactivateAddButton ();
-//popup-edit__button проверка ввода
-function deactivateEditButton () {
-  if (!inputTitleEdit.value.valid && !inputAttributeEdit.value.valid) {
-    buttonSubmitEdit.removeAttribute("disabled", true);
-    buttonSubmitEdit.classList.remove('popup__button_disabled');
-  } else {
-    buttonSubmitEdit.setAttribute("disabled", true);
-    buttonSubmitEdit.classList.add('popup__button_disabled');    
-  }
-}
-
-// if (buttonElement.classList.contains('popup-add__button')) {
-//   if (hasNotValidInput(inputList)) {
-//     buttonElement.setAttribute("disabled", true);
-//     buttonElement.classList.add(validationSettings.inactiveButtonClass);
-//   } else {
-//     buttonElement.removeAttribute("disabled");
-//     buttonElement.classList.remove(validationSettings.inactiveButtonClass);
-//   }
-//   inputAddName.value = '';
-//   inputAddLink.value = '';
-// }
