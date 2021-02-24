@@ -10,6 +10,8 @@ const popupViewWindow = document.querySelector('.popup-view');
 const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
+const addingButton = document.querySelector('.popup-add__button');
+const savingButton = document.querySelector('.popup-edit__button');
 const infoTitle = document.querySelector('.profile__visitor-name');
 const infoAttribute = document.querySelector('.profile__visitor-attribute');
 const formElementEdit = document.querySelector('.popup-edit__window');
@@ -61,8 +63,8 @@ function openPopup(popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener('click', (evt) => { fillFormEdit(savingButton); openPopup(popupEditWindow) });
-buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow); buttonAddValidation(buttonEl) });
+buttonEditOpen.addEventListener('click', (evt) => { fillInput(); fillFormEdit(savingButton); openPopup(popupEditWindow) });
+buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow); buttonAddValidation(addingButton) });
 
 // функция закрытия popup
 
@@ -72,12 +74,14 @@ function closePopup(popup) {
 }
 
 buttonEditClose.addEventListener('click', (evt) => { closePopup(popupEditWindow) });
-buttonAddClose.addEventListener('click', (evt) => { closePopup(popupAddWindow) });
+buttonAddClose.addEventListener('click', (evt) => { clearInputAdd(); closePopup(popupAddWindow) });
 buttonViewClose.addEventListener('click', (evt) => { closePopup(popupViewWindow) });
 
 // наполнение редактора содержимым страницы
-
-
+function fillInput() {
+  inputTitleEdit.value = infoTitle.textContent;
+  inputAttributeEdit.value = infoAttribute.textContent;
+}
 
 function handlerFormSubmitEdit(evt) {
   evt.preventDefault();
@@ -89,6 +93,10 @@ function handlerFormSubmitEdit(evt) {
 formElementEdit.addEventListener('submit', handlerFormSubmitEdit)
 
 // попап на добавление карточек
+function clearInputAdd() {
+  inputAddName.value = '';
+  inputAddLink.value = '';
+}
 
 function addCard(card) {
   listContainerEl.prepend(card);
@@ -97,8 +105,7 @@ function addCard(card) {
 function renderCard(evt) {
   evt.preventDefault();
   addCard(getCard({ name: inputAddName.value, link: inputAddLink.value }));
-  inputAddName.value = '';
-  inputAddLink.value = '';
+  clearInputAdd();
   closePopup(popupAddWindow);
 }
 
@@ -122,7 +129,7 @@ function cardLike(evt) {
 //закрытие при миссклике
 
 popupEditWindow.addEventListener('click', (evt) => { if (evt.target === evt.currentTarget) { closePopup(popupEditWindow) } });
-popupAddWindow.addEventListener('click', (evt) => { if (evt.target === evt.currentTarget) { closePopup(popupAddWindow) } });
+popupAddWindow.addEventListener('click', (evt) => { if (evt.target === evt.currentTarget) { clearInputAdd(); closePopup(popupAddWindow) } });
 popupViewWindow.addEventListener('click', (evt) => { if (evt.target === evt.currentTarget) { closePopup(popupViewWindow) } });
 
 //отображение карточек
