@@ -40,6 +40,16 @@ function fillFormEdit(buttonElem) {
   }
 }
 
+function checkButtonForm(buttonElem) {
+  if (buttonElem.classList.contains('popup-add__button')) {
+    buttonAddValidation(buttonElem);
+  } 
+  if (buttonElem.classList.contains('popup-edit__button')) {
+    fillFormEdit(buttonElem);
+  }
+}
+
+
 //показ стандартных сообщений об ошибке и выделение инпута при невалидном вводе
 const showInputError = (formElement, inputElement, errorMessage, validationSettings) => {
   const formSectionElement = inputElement.closest(".popup__section");
