@@ -23,6 +23,11 @@ const inputAddLink = formElementAdd.querySelector('.popup__input_link');
 const viewImage = document.querySelector('.popup-view__image');
 const viewTitle = document.querySelector('.popup-view__title');
 
+//
+function inputFocus(inputEl) {
+  inputEl.focus();}
+
+
 // функция открытия popup
 
 function escapeClose(evt) {
@@ -77,7 +82,7 @@ function addCard(card) {
 
 function renderCard(evt) {
   evt.preventDefault();
-  addCard(getCard({ name: inputAddName.value, link: inputAddLink.value }));
+  addCard(new Card({ name: inputAddName.value, link: inputAddLink.value }, '.template__element_simple'));
   clearInputAdd();
   closePopup(popupAddWindow);
 }
@@ -86,19 +91,19 @@ formElementAdd.addEventListener('submit', renderCard)
 
 // удаление карточки
 
-function deleteCard(evt) {
-  const targetEl = evt.target;
-  const targetItem = targetEl.closest('.element');
-  targetItem.remove();
-}
+// function deleteCard(evt) {
+//   const targetEl = evt.target;
+//   const targetItem = targetEl.closest('.element');
+//   targetItem.remove();
+// }
 
 // кнопка лайк
 
-function cardLike(evt) {
-  const targetLike = evt.target;
-  const targetedLike = targetLike.closest('.element__title-like');
-  targetedLike.classList.toggle('element__title-like_set');
-}
+// function cardLike(evt) {
+//   const targetLike = evt.target;
+//   const targetedLike = targetLike.closest('.element__title-like');
+//   targetedLike.classList.toggle('element__title-like_set');
+// }
 //закрытие при миссклике
 
 popupEditWindow.addEventListener('click', (evt) => { if (evt.target === evt.currentTarget) { closePopup(popupEditWindow) } });
@@ -107,34 +112,40 @@ popupViewWindow.addEventListener('click', (evt) => { if (evt.target === evt.curr
 
 //отображение карточек
 
-function getCard(item) {
-  const newCard = templateEl.content.cloneNode(true);
-  const elImage = newCard.querySelector('.element__image');
-  elImage.src = item.link;
-  elImage.alt = item.name;
-  const elTitle = newCard.querySelector('.element__title-text');
-  elTitle.textContent = item.name;
+// function getCard(item) {
+//   const newCard = templateEl.content.cloneNode(true);
+//   const elImage = newCard.querySelector('.element__image');
+//   elImage.src = item.link;
+//   elImage.alt = item.name;
+//   const elTitle = newCard.querySelector('.element__title-text');
+//   elTitle.textContent = item.name;
 
-  const buttonTrash = newCard.querySelector('.element__trash');
-  buttonTrash.addEventListener('click', deleteCard);
+//   const buttonTrash = newCard.querySelector('.element__trash');
+//   buttonTrash.addEventListener('click', deleteCard);
 
-  const buttonLike = newCard.querySelector('.element__title-like');
-  buttonLike.addEventListener('click', cardLike);
+//   const buttonLike = newCard.querySelector('.element__title-like');
+//   buttonLike.addEventListener('click', cardLike);
 
-  elImage.addEventListener('click', () => {
-    openPopup(popupViewWindow)
-    viewImage.src = item.link;
-    viewImage.alt = item.name;
-    viewTitle.textContent = item.name;
-  });
+//   elImage.addEventListener('click', () => {
+//     openPopup(popupViewWindow)
+//     viewImage.src = item.link;
+//     viewImage.alt = item.name;
+//     viewTitle.textContent = item.name;
+//   });
 
-  return newCard
-}
+//   return newCard
+// }
 
-function render() {
-  const html = initialCards
-    .map(getCard);
-  listContainerEl.append(...html);
-}
+// function render() {
+//   const html = initialCards
+//     .map(getCard);
+//   listContainerEl.append(...html);
+// }
 
-render()
+// render()
+// elImage.addEventListener('click', () => {
+//   openPopup(popupViewWindow)
+//   viewImage.src = item.link;
+//   viewImage.alt = item.name;
+//   viewTitle.textContent = item.name;
+// });
