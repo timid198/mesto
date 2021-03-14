@@ -1,3 +1,8 @@
+import Card from './card.js';
+import { initialCards } from './content.js';
+import FormValidator from './formValidator.js';
+import { inputData } from './validate.js';
+
 const buttonEditOpen = document.querySelector('.profile__edit-button');
 const buttonAddOpen = document.querySelector('.profile__add-button');
 const buttonSubmitEdit = document.querySelector('.popup-edit__button');
@@ -18,8 +23,19 @@ const inputAttributeEdit = formElementEdit.querySelector('.popup__input_about');
 const formElementAdd = popupAddWindow.querySelector('.popup-add__window');
 const inputAddName = formElementAdd.querySelector('.popup__input_title');
 const inputAddLink = formElementAdd.querySelector('.popup__input_link');
-const viewImage = document.querySelector('.popup-view__image');
-const viewTitle = document.querySelector('.popup-view__title');
+
+// добавление начальных карточек
+
+function renderPage(items) {
+  items.forEach((item) => {
+    const card = new Card(item, '.template__element_simple');
+    const cardElement = card.generateCard();
+
+    document.querySelector('.elements').append(cardElement);
+  })
+}
+
+renderPage(initialCards);
 
 // функция открытия popup
 
@@ -30,6 +46,9 @@ function escapeClose(evt) {
 }
 
 function openPopup(popup) {
+  const validation = new FormValidator(inputData, popup);
+  validation.enableValidation();
+
   popup.classList.add('popup_opened');
   document.addEventListener('keydown', escapeClose);
 }
@@ -75,7 +94,7 @@ function addCard(card) {
 
 function renderCard(evt) {
   evt.preventDefault();
-  const card = new Card({name: inputAddName.value, link: inputAddLink.value}, '.template__element_simple');
+  const card = new Card({ name: inputAddName.value, link: inputAddLink.value }, '.template__element_simple');
   addCard(card.generateCard());
   clearInputAdd();
   closePopup(popupAddWindow);
