@@ -34,8 +34,8 @@ function openPopup(popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener('click', (evt) => { fillInput(); checkButtonForm(savingButton); openPopup(popupEditWindow) });
-buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow); checkButtonForm(addingButton) });
+buttonEditOpen.addEventListener('click', (evt) => { fillInput(); openPopup(popupEditWindow) });
+buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow) });
 
 // функция закрытия popup
 
