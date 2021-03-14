@@ -116,7 +116,7 @@ class FormValidator {
         const formElements = document.querySelectorAll(this._validationSettings.formSelector);
         const formList = Array.from(formElements);
         formList.forEach((formElement) => {
-            this.setEventListeners(formElement, validationSettings);
+            this.setEventListeners(formElement, this._validationSettings);
         });
       }
     
@@ -132,5 +132,5 @@ const inputData = {
     errorClass: 'popup__error_visible',
 };
 
-const validation = new FormValidator;
-validation.enableValidation(inputData, '.popup__form')
+const validation = new FormValidator(inputData, '.popup__form');
+validation.enableValidation();
