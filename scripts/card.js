@@ -1,27 +1,13 @@
-const viewImage = document.querySelector('.popup-view__image');
-const viewTitle = document.querySelector('.popup-view__title');
-const popupViewWindow = document.querySelector('.popup-view');
-
 export default class Card {
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, viewverCard) {
         this._name = data.name;
         this._link = data.link;
         this._cardSelector = cardSelector;
-        this.cardLike = this._cardLike.bind(this);
-        this.deleteCard = this._deleteCard.bind(this);
-        this.generateCard = this.generateCard.bind(this);
-        this.viewverCard = this._viewverCard.bind(this);
-        this.openPopup = this._openPopup.bind(this);
-        this.escapeClose = this._escapeClose.bind(this);
-        this.closePopup = this._closePopup.bind(this);
+        this._viewverCard = viewverCard;
     }
 
     _getTemplate() {
-        const cardElement = document
-            .querySelector(this._cardSelector)
-            .content
-            .querySelector('.element')
-            .cloneNode(true);
+        const cardElement = document.querySelector(this._cardSelector).content.querySelector('.element').cloneNode(true);
 
         return cardElement;
     }
@@ -40,7 +26,6 @@ export default class Card {
         return this._element;
     }
 
-
     _deleteCard() {
         this._element.remove();
         this._element = null;
@@ -48,34 +33,11 @@ export default class Card {
 
     _cardLike() {
         this.buttonLike.classList.toggle('element__title-like_set');
-    }
-
-    _escapeClose(evt) {
-        if (evt.keyCode === 27) {
-            this.closePopup(document.querySelector('.popup_opened'));
-        }
-    }
-
-    _openPopup(popup) {
-        popup.classList.add('popup_opened');
-        document.addEventListener('keydown', this.escapeClose);
-    }
-
-    _closePopup(popup) {
-        popup.classList.remove('popup_opened');
-        document.removeEventListener('keydown', this.escapeClose);
-    }
-
-    _viewverCard() {
-        this.openPopup(popupViewWindow);
-        viewImage.src = this.cardImage.src;
-        viewImage.alt = this.cardImage.alt;
-        viewTitle.textContent = this.cardImage.alt;
-    }
+    }    
 
     _setEventListeners() {
-        this.buttonLike.addEventListener('click', this.cardLike);
-        this.buttonDelete.addEventListener('click', this.deleteCard);
-        this.cardImage.addEventListener('click', this.viewverCard);
+        this.buttonLike.addEventListener('click', () => this._cardLike(this));
+        this.buttonDelete.addEventListener('click', () => this._deleteCard(this));
+        this.cardImage.addEventListener('click', () => this._viewverCard(this._name, this._link));
     }
 }
