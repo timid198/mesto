@@ -13,8 +13,6 @@ const popupViewWindow = document.querySelector('.popup-view');
 const buttonEditClose = document.querySelector('.popup-edit__close');
 const buttonAddClose = document.querySelector('.popup-add__close');
 const buttonViewClose = document.querySelector('.popup-view__close');
-const addingButton = document.querySelector('.popup-add__button');
-const savingButton = document.querySelector('.popup-edit__button');
 const popupEditForm = document.querySelector('.popup-edit__form');
 const popupAddForm = document.querySelector('.popup-add__form');
 const infoTitle = document.querySelector('.profile__visitor-name');
@@ -63,8 +61,25 @@ function openPopup(popup) {
   document.addEventListener('keydown', escapeClose);
 }
 
-buttonEditOpen.addEventListener('click', (evt) => { fillInput(); openPopup(popupEditWindow) });
-buttonAddOpen.addEventListener('click', (evt) => { openPopup(popupAddWindow) });
+//открытие формы добавления карточек
+
+function addingFormOpen() {
+  validationAdd.buttonDisabled();
+  validationAdd.clearInputsFromError();
+  openPopup(popupAddWindow)
+}
+
+//открытие формы редактирования профиля
+
+function editingFormOpen() {
+  validationEdit.buttonEnabled();
+  validationEdit.clearInputsFromError();
+  fillInput();
+  openPopup(popupEditWindow);
+}
+
+buttonEditOpen.addEventListener('click', (evt) => { editingFormOpen() });
+buttonAddOpen.addEventListener('click', (evt) => { addingFormOpen() });
 
 // функция закрытия popup
 
@@ -73,7 +88,7 @@ function closePopup(popup) {
   document.removeEventListener('keydown', escapeClose);
 }
 
-buttonEditClose.addEventListener('click', (evt) => { closePopup(popupEditWindow) });
+buttonEditClose.addEventListener('click', (evt) => { closePopup(popupEditWindow)});
 buttonAddClose.addEventListener('click', (evt) => { clearInputAdd(); closePopup(popupAddWindow) });
 buttonViewClose.addEventListener('click', (evt) => { closePopup(popupViewWindow) });
 

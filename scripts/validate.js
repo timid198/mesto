@@ -6,4 +6,6 @@ export const inputData = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__error_visible',
   errorSelector: '.popup__error',
+  formAddClass: 'popup-add',
+  formEditClass: 'popup-edit',
 }
