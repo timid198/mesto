@@ -4,7 +4,8 @@
   "description": "Проект создан для наглядного отображения навыков полученных навыков создания адаптивных веб страниц с содержанием интерактивного контента (всплывающее окно, кнопки). При изменении ширины отображения содержимого, контент автоматически выстраивается на странице. Присутствует возможность изменять содержание текстового блока профиля пользователя, добавлять и удалять карточки, реализована проверка вводимой информации посредством JS.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --mode production",
+    "dev": "webpack serve"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,23 @@
   "bugs": {
     "url": "https://github.com/timid198/mesto/issues"
   },
-  "homepage": "https://github.com/timid198/mesto#readme"
+  "homepage": "https://github.com/timid198/mesto#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.13",
+    "@babel/preset-env": "^7.13.12",
+    "autoprefixer": "^10.2.5",
+    "babel-loader": "^8.2.2",
+    "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^5.2.0",
+    "cssnano": "^4.1.10",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.4.0",
+    "postcss-loader": "^5.2.0",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "core-js": "^3.9.1"
+  }
 }

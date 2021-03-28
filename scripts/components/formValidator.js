@@ -17,7 +17,7 @@ export default class FormValidator {
 
   //поиск невалидного инпута
 
-  _hasNotValidInput = (inputList) => { return inputList.some((inputElement) => { return !inputElement.validity.valid }) };
+  _hasNotValidInput(inputList) { return inputList.some((inputElement) => { return !inputElement.validity.valid }) };
 
   //выбор состояния кнопки подтверждения действия
 
