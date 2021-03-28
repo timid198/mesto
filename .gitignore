@@ -1,7 +1,2 @@
-blocks/
-images/
-pages/
-scripts/
-vendor/
-index.html
-README.md
+node_modules/
+dist/
