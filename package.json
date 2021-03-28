@@ -1,0 +1,19 @@
+{
+  "name": "mesto-russia",
+  "version": "1.0.0",
+  "description": "Проект создан для наглядного отображения навыков полученных навыков создания адаптивных веб страниц с содержанием интерактивного контента (всплывающее окно, кнопки). При изменении ширины отображения содержимого, контент автоматически выстраивается на странице. Присутствует возможность изменять содержание текстового блока профиля пользователя, добавлять и удалять карточки, реализована проверка вводимой информации посредством JS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/timid198/mesto.git"
+  },
+  "author": "Andrey Azovkin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/timid198/mesto/issues"
+  },
+  "homepage": "https://github.com/timid198/mesto#readme"
+}

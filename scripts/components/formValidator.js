@@ -87,6 +87,6 @@ export default class FormValidator {
 
   enableValidation() {
     this._preventDefault;
-    this._inputList.forEach((inputElement) => {inputElement.addEventListener ("input", () => {console.log(inputElement); this._setEventListeners(inputElement, this._buttonElement)})
+    this._inputList.forEach((inputElement) => {inputElement.addEventListener ("input", () => {this._setEventListeners(inputElement, this._buttonElement)})
   })}
 }
