@@ -43,11 +43,12 @@ const formEdit = new PopupWithForm (
 }});
 
 function fillInput() {
-  inputTitleEdit.value = userInfo.getUserInfo().userName;
-  inputAttributeEdit.value = userInfo.getUserInfo().userAbout;
+  const userData = userInfo.getUserInfo();
+  inputTitleEdit.value = userData.userName;
+  inputAttributeEdit.value = userData.userAbout;
 }
 
-function handlerFormSubmitEdit(evt) {
+function popupEditOpen(evt) {
   evt.preventDefault();
   validationEdit.buttonEnabled();
   validationEdit.clearInputsFromError();
@@ -56,7 +57,7 @@ function handlerFormSubmitEdit(evt) {
   formEdit.open();
 }
 
-buttonEditOpen.addEventListener('click', handlerFormSubmitEdit);
+buttonEditOpen.addEventListener('click', popupEditOpen);
 
 //попап добавления карточки
 

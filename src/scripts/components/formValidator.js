@@ -43,10 +43,7 @@ export default class FormValidator {
   //функция для первоначального показа форм в необходимом виде 
 
   clearInputsFromError(validationSettings, formElementSelector) {
-    const inputListAddForm = Array.from(this._formElementSelector.querySelectorAll(`.${this._validationSettings.inputErrorClass}`));
-    const errorList = Array.from(this._formElementSelector.querySelectorAll(`.${this._validationSettings.errorClass}`));
-    errorList.forEach((errorEl) => { errorEl.classList.remove(this._validationSettings.errorClass); errorEl.textContent = ''; });
-    inputListAddForm.forEach((inputEl) => { inputEl.classList.remove(this._validationSettings.inputErrorClass) })
+    this._inputList.forEach((inputEl) => { this._hideInputError(inputEl) })
   }
 
   //проверка инпутов
@@ -77,16 +74,9 @@ export default class FormValidator {
     errorElement.classList.add(this._validationSettings.errorClass);
   }
 
-  //отмена стандартного события
-
-  _preventDefault(evt) {
-    evt.preventDefault();
-  }
-
   //включение проверки событий ввода
 
   enableValidation() {
-    this._preventDefault;
     this._inputList.forEach((inputElement) => {inputElement.addEventListener ("input", () => {this._setEventListeners(inputElement, this._buttonElement)})
   })}
 }
