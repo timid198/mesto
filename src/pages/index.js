@@ -14,7 +14,10 @@ validationEdit.enableValidation();
 const validationAdd = new FormValidator(inputData, popupAddForm);
 validationAdd.enableValidation();
 
+//просмотрщик карточек
+
 const viewerImage = new PopupWithImage ('.popup-view');
+viewerImage.setEventListeners();
 
 //функция создания карточки
 
@@ -23,8 +26,8 @@ function createCard(thing, cardClass) {
   return card.generateCard();
 }
 
-
 //заполнение страницы
+
 const newSection = new Section({items: initialCards, renderer: (item) => {
   const cardElement = createCard (item, '.template__element_simple' );
   newSection.setItem(cardElement);
@@ -42,6 +45,8 @@ const formEdit = new PopupWithForm (
       formEdit.close();
 }});
 
+formEdit.setEventListeners(); // установка слушателей формы
+
 function fillInput() {
   const userData = userInfo.getUserInfo();
   inputTitleEdit.value = userData.userName;
@@ -52,8 +57,7 @@ function popupEditOpen(evt) {
   evt.preventDefault();
   validationEdit.buttonEnabled();
   validationEdit.clearInputsFromError();
-  fillInput();
-  formEdit.setEventListeners();
+  fillInput();  
   formEdit.open();
 }
 
@@ -69,11 +73,12 @@ const formAdd = new PopupWithForm (
     formAdd.close();
   }});
 
+formAdd.setEventListeners(); // установка слушателей формы
+
 function addingCard(evt) {
   evt.preventDefault();
   validationAdd.buttonDisabled();
-  validationAdd.clearInputsFromError();
-  formAdd.setEventListeners();
+  validationAdd.clearInputsFromError();  
   formAdd.open();
 }
 
