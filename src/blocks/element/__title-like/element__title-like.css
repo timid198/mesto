@@ -1,4 +1,7 @@
 .element__title-like {
+    position: absolute;
+    bottom: 38px;
+    right: 18px;
     margin: 0;
     padding: 0;
     align-self: center;

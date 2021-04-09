@@ -10,6 +10,9 @@
     height: 120px;
     border-radius: 50%;
     display: block;
+    
+    display: flex;
+    justify-content: center;
 }
 
 @media screen and (max-width: 879px) {
