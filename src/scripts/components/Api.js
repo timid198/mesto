@@ -69,39 +69,17 @@ export default class Api {
         return Promise.reject(`Ошибка ${res.status}`)})
         }
 
-    deleteCard(id) {
-        return fetch(`${this._address}v1/${this._groupID}/cards/${id}`, {
-            method: 'DELETE',
-            headers: {
-            authorization: `${this._token}`
-            }
-        })
-            .then(response => response.ok
-                ? Promise.resolve('sucsess')
-                : Promise.reject(`Ошибка ${response.status}`))
-    }
-
-    cardLikeSet(id) {
+    changeCardLikes(id, isLike) {
+        const status = isLike ? 'DELETE' : 'PUT';
         return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
-            method: 'PUT',
+            method: status,
             headers: {
             authorization: `${this._token}`
             }
         })
-            .then(response => response.ok
-                ? Promise.resolve('sucsess')
-                : Promise.reject(`Ошибка ${response.status}`))
-    }
-
-    cardLikeDelete(id) {
-        return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
-            method: 'DELETE',
-            headers: {
-            authorization: `${this._token}`
-            }
-        })
-            .then(response => response.ok
-                ? Promise.resolve('sucsess')
-                : Promise.reject(`Ошибка ${response.status}`))
+           .then(res => {
+            if (res.ok) {
+            return res.json();}
+        return Promise.reject(`Ошибка ${res.status}`)})
     }
 }

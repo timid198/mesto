@@ -24,7 +24,6 @@ viewerImage.setEventListeners();
 
 //функция создания карточки
 let cardToRemove = {};
-let cardToLike = {};
 
 function createCard(thing, cardClass, counter) {
   const card =new Card(thing, cardClass, viewerImage.handleCardClick.bind(viewerImage), counter, popupDeleteCard);
@@ -127,12 +126,14 @@ const popupDeleteCard = new PopupWithForm (
 api.getCards()
   .then((cards) => {
     const newSection = new Section({items: Array.from(cards), renderer: (item) => {
-      const cardElement = new Card({name: item.name, link: item.link, _id: item._id, likes: item.likes, owner: item.owner}, '.template__element_simple',
-         viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
-          popupDeleteCard.open(); cardToRemove = cardElement}}, likeeLuck(cardToRemove));
-          if (item.owner.name === patternProfile.textContent) {
-        newSection.setItem(cardElement.generateCard());} else {
-        newSection.setItem(cardElement.generateCardDelInactive());}
+      const cardElement = new Card({name: item.name, link: item.link, _id: item._id, likes: item.likes, owner: item.owner, myId: userInfo._id}, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
+          popupDeleteCard.open(); cardToRemove = cardElement}, handlerLikesClick: () => {
+            api.changeCardsLikes(cardElement._id, cardElement.isLiked())
+              .then((data) => cardElement.setLikes(data))
+              .catch((err) => console.log(err));
+          }
+        });
+        newSection.setItem(cardElement.generateCard());
     }}, '.elements');
     
     newSection.renderItems();
@@ -146,29 +147,18 @@ api.getCards()
       api.pushAddCardData({name: formValues.title, link: formValues.link})
       .then((res) => {
       const newAddedCard = new Section({items: res.json, renderer: (res) => {
-        const cardElement = new Card({name: res.name, link: res.link, _id: res._id, likes: res.likes, owner: res.owner}, '.template__element_simple',
-          viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
-          popupDeleteCard.open(); cardToRemove = cardElement}}, likeeLuck(cardElement, cardElement.isLiked()));
-          console.log(handlerLikesClick)
+        const cardElement = new Card({name: res.name, link: res.link, _id: res._id, likes: res.likes, owner: res.owner, myId: userInfo._id}, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
+          popupDeleteCard.open(); cardToRemove = cardElement;}, handlerLikesClick: () => {
+            api.changeCardsLikes(cardElement._id, cardElement.isLiked())
+              .then((data) => cardElement.setLikes(data))
+              .catch((err) => console.log(err));
+        }
+      });
         newAddedCard.setItem(cardElement.generateCard());
       }}, '.elements');
       formAdd.close();
       }
   )}});
-
-  const likeeLuck = (item) => {
-
-    if (item.isLiked()) {
-      api.cardLikeDelete(item._id)
-      .then(() => item.cardLikeRemove())
-      .catch(err => console.log('Ошибка при выполнении'))
-    } else {
-      api.cardLikeSet(item._id)
-      .then(() => item.cardLikeSet())
-      .catch(err => console.log('Ошибка при выполнении'))
-    }
-  }
-  
   
   formAdd.setEventListeners(); // установка слушателей формы
   
@@ -234,13 +224,5 @@ api.getCards()
   // }})
 
   // попап подтверждения удаления
-
-
-
-
-function popupSubmitDeleteOpen(item){
-  popupDeleteCard.open();
-  return item;
-}
 
 popupDeleteCard.setEventListeners();
