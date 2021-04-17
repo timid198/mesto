@@ -77,7 +77,7 @@ export default class Api {
             }
         })
             .then(response => response.ok
-                ? Promise.resolve('click')
+                ? Promise.resolve('sucsess')
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 
@@ -89,7 +89,7 @@ export default class Api {
             }
         })
             .then(response => response.ok
-                ? Promise.resolve('click')
+                ? Promise.resolve('sucsess')
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 
@@ -101,7 +101,7 @@ export default class Api {
             }
         })
             .then(response => response.ok
-                ? Promise.resolve('click')
+                ? Promise.resolve('sucsess')
                 : Promise.reject(`Ошибка ${response.status}`))
     }
 }

@@ -6,7 +6,7 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithImage from '../scripts/components/PopupWithImage.js';
 import Api from '../scripts/components/Api.js';
-import {inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, buttonEditOpen, buttonAddOpen, initialCards, inputData, patternProfile} from '../scripts/utils/constants.js';
+import {inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, buttonEditOpen, buttonAddOpen, inputData, patternProfile} from '../scripts/utils/constants.js';
 
 
 // фключение валидации
@@ -127,8 +127,9 @@ const popupDeleteCard = new PopupWithForm (
 api.getCards()
   .then((cards) => {
     const newSection = new Section({items: Array.from(cards), renderer: (item) => {
-      const cardElement = new Card({name: item.name, link: item.link, _id: item._id, likes: item.likes, owner: item.owner}, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
-          popupDeleteCard.open(); cardToRemove = cardElement}}, cardElement.cardLike());
+      const cardElement = new Card({name: item.name, link: item.link, _id: item._id, likes: item.likes, owner: item.owner}, '.template__element_simple',
+         viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
+          popupDeleteCard.open(); cardToRemove = cardElement}}, likeeLuck(cardToRemove));
           if (item.owner.name === patternProfile.textContent) {
         newSection.setItem(cardElement.generateCard());} else {
         newSection.setItem(cardElement.generateCardDelInactive());}
@@ -145,8 +146,9 @@ api.getCards()
       api.pushAddCardData({name: formValues.title, link: formValues.link})
       .then((res) => {
       const newAddedCard = new Section({items: res.json, renderer: (res) => {
-        const cardElement = new Card({name: res.name, link: res.link, _id: res._id, likes: res.likes, owner: res.owner}, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
-          popupDeleteCard.open(); cardToRemove = cardElement;}}, {handlerLikesClick: () => { cardToLike = cardElement; console.log(cardToLike) }});
+        const cardElement = new Card({name: res.name, link: res.link, _id: res._id, likes: res.likes, owner: res.owner}, '.template__element_simple',
+          viewerImage.handleCardClick.bind(viewerImage), {handlerRemoveClick: () => {
+          popupDeleteCard.open(); cardToRemove = cardElement}}, likeeLuck(cardElement, cardElement.isLiked()));
           console.log(handlerLikesClick)
         newAddedCard.setItem(cardElement.generateCard());
       }}, '.elements');
@@ -154,10 +156,9 @@ api.getCards()
       }
   )}});
 
-  function cardLikesFunc(item) {
+  const likeeLuck = (item) => {
 
-    if (item.likes.some((val) => val === patternProfile.textContent)) {
-
+    if (item.isLiked()) {
       api.cardLikeDelete(item._id)
       .then(() => item.cardLikeRemove())
       .catch(err => console.log('Ошибка при выполнении'))

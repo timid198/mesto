@@ -1,5 +1,5 @@
 export default class Card {
-    constructor({name, link, _id, likes, owner}, cardSelector, handleCardClick, {handlerRemoveClick}, handlerLikeClick) {
+    constructor({name, link, _id, likes, owner}, cardSelector, handleCardClick, {handlerRemoveClick}, likerFunc) {
         this._name = name;
         this._link = link;
         this._id = _id;
@@ -8,7 +8,8 @@ export default class Card {
         this._cardSelector = cardSelector;
         this._viewverCard = handleCardClick;
         this._handlerRemoveClick = handlerRemoveClick;
-        this._handlerLikeClick = handlerLikeClick;
+        this._likerFunc = likerFunc;
+        this.isLikely = this.isLiked.bind(this);
         // this._liker = this._handlerLikeClick.bind(this);
     }
 
@@ -22,7 +23,6 @@ export default class Card {
         this._element = this._getTemplate();
 
         this.buttonLike = this._element.querySelector('.element__title-like');
-        this.counterLike = this._element.querySelector('.element__title-counter');
         this.buttonDelete = this._element.querySelector('.element__trash');
         this.cardImage = this._element.querySelector('.element__image');
         this._element.querySelector('.element__title-counter').textContent = this._likes.length;
@@ -40,7 +40,6 @@ export default class Card {
         this._element = this._getTemplate();
 
         this.buttonLike = this._element.querySelector('.element__title-like');
-        this.counterLike = this._element.querySelector('.element__title-counter');
         this.buttonDelete = this._element.querySelector('.element__trash');
         this.cardImage = this._element.querySelector('.element__image');
         this._element.querySelector('.element__title-counter').textContent = this._likes.length;
@@ -73,20 +72,51 @@ export default class Card {
             value: false}
     }
 
-
-    cardLike() {
-        if (!this._likes.includes(this._owner) === true){
-            this._likes.push(this._owner);
-            this.buttonLike.classList.add('element__title-like_set');
-        } else {
-            this._likes.splice(indexOf(this._owner));
-            this.buttonLike.classList.remove('element__title-like_set');
-        }
-    }
+    isLiked() {
+        return !this._likes.includes(this._owner);
+    }  
 
     _setEventListeners() {
-        this.buttonLike.addEventListener('click', () => this._handlerLikeClick());
+        this.buttonLike.addEventListener('click', () => this._likerFunc(this));
         this.buttonDelete.addEventListener('click', () => this._handlerRemoveClick());
         this.cardImage.addEventListener('click', () => this._viewverCard(this._name, this._link));
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// cardLike() {
+//     if (!this._likes.includes(this._owner) === true){
+//         this._likes.push(this._owner);
+//         this.buttonLike.classList.add('element__title-like_set');
+//     } else {
+//         this._likes.splice(indexOf(this._owner));
+//         this.buttonLike.classList.remove('element__title-like_set');
+//     }
+// }
