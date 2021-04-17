@@ -133,9 +133,10 @@ api.getCards()
               .catch((err) => console.log(err));
           }
         });
+        cardElement.setDeleteHidden();
         newSection.setItem(cardElement.generateCard());
     }}, '.elements');
-    
+
     newSection.renderItems();
   });
 
@@ -159,6 +160,7 @@ api.getCards()
       formAdd.close();
       }
   )}});
+  
   
   formAdd.setEventListeners(); // установка слушателей формы
   

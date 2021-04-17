@@ -69,7 +69,19 @@ export default class Api {
         return Promise.reject(`Ошибка ${res.status}`)})
         }
 
-    changeCardLikes(id, isLike) {
+    deleteCard(id) {
+        return fetch(`${this._address}v1/${this._groupID}/cards/${id}`, {
+            method: 'DELETE',
+            headers: {
+            authorization: `${this._token}`
+            }
+        })
+            .then(response => response.ok
+                ? Promise.resolve('sucsess')
+                : Promise.reject(`Ошибка ${response.status}`))
+    }
+
+    changeCardsLikes(id, isLike) {
         const status = isLike ? 'DELETE' : 'PUT';
         return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
             method: status,
