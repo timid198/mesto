@@ -1,0 +1,107 @@
+export default class Api {
+    constructor({address, token, groupID}) {
+        this._address = address;
+        this._token = token;
+        this._groupID = groupID;
+    }
+
+
+    getCards() {
+        return fetch(`${this._address}v1/${this._groupID}/cards`, {
+            headers: {
+            authorization: `${this._token}`
+            }
+        })
+        .then(res => {
+            if (res.ok) {
+            return res.json();}
+        return Promise.reject(`Ошибка ${res.status}`)})
+       }
+
+    getUserData() {
+        return fetch(`${this._address}v1/${this._groupID}/users/me`, {
+            headers: {
+            authorization: `${this._token}`
+            }
+        }) 
+
+        .then(res => {
+            if (res.ok) {
+            return res.json();}
+        return Promise.reject(`Ошибка ${res.status}`)})
+        }
+
+    pushUserData(data) {
+        return fetch(`${this._address}v1/${this._groupID}/users/me`, {
+            method: 'PATCH',
+            headers: {
+            authorization: `${this._token}`,
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: `${data.name}`,
+                about: `${data.about}`,
+            })
+        })
+
+        .then(res => {
+            if (res.ok) {
+            return res.json();}
+        return Promise.reject(`Ошибка ${res.status}`)})
+        }
+
+    pushAddCardData(data) {
+        return fetch(`${this._address}v1/${this._groupID}/cards`, {
+            method: 'POST',
+            headers: {
+            authorization: `${this._token}`,
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: `${data.name}`,
+                link: `${data.link}`,
+            })
+        })
+
+        .then(res => {
+            if (res.ok) {
+            return res.json();}
+        return Promise.reject(`Ошибка ${res.status}`)})
+        }
+
+    deleteCard(id) {
+        return fetch(`${this._address}v1/${this._groupID}/cards/${id}`, {
+            method: 'DELETE',
+            headers: {
+            authorization: `${this._token}`
+            }
+        })
+            .then(response => response.ok
+                ? Promise.resolve('click')
+                : Promise.reject(`Ошибка ${response.status}`))
+    }
+
+    cardLikeSet(id) {
+        return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
+            method: 'PUT',
+            headers: {
+            authorization: `${this._token}`
+            }
+        })
+            .then(response => response.ok
+                ? Promise.resolve('click')
+                : Promise.reject(`Ошибка ${response.status}`))
+    }
+
+    cardLikeDelete(id) {
+        return fetch(`${this._address}v1/${this._groupID}/cards/likes/${id}`, {
+            method: 'DELETE',
+            headers: {
+            authorization: `${this._token}`
+            }
+        })
+            .then(response => response.ok
+                ? Promise.resolve('click')
+                : Promise.reject(`Ошибка ${response.status}`))
+    }
+}

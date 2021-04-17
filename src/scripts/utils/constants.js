@@ -44,5 +44,6 @@ const inputData = {
   const popupAddForm = document.querySelector('.popup-add__form');
   const buttonEditOpen = document.querySelector('.profile__edit-button');
   const buttonAddOpen = document.querySelector('.profile__add-button');
+  const patternProfile = document.querySelector('.profile__visitor-name');
 
-  export {inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, buttonEditOpen, buttonAddOpen, initialCards, inputData}
+  export {inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, buttonEditOpen, buttonAddOpen, initialCards, inputData, patternProfile}

@@ -15,9 +15,10 @@
 
     <main class="main">        
 
-        <section class="profile">
+        <section class="profile" _id="#">
             <div class="profile__content">
-                <div class="profile__avatar">
+                <div class="profile__image">
+                    <img src="./images/profile-avatar.png" alt="Аватар" class="profile__avatar">
                     <div class="profile__overlay"></div>                    
                 </div>
                 <div class="profile__info">
@@ -94,7 +95,9 @@
         <div class="popup__window popup-delete__window">
             <button type="reset" class="popup__close popup-delete__close"></button>
             <h2 class="popup__title popup-delete__title">Вы уверены?</h2>
-            <button type="submit" class="popup__button popup-delete__button">Да</button>
+            <form class="popup__form popup-delete__form" novalidate>
+                <button type="submit" class="popup__button popup-delete__button">Да</button>
+            </form>
         </div>
     </div>
 
@@ -112,13 +115,15 @@
         <div class="element">
             <img src="#" alt="#" class="element__image">
             <button type="submit" class="element__title-like"></button>
-            <p class="element__title-counter">1</p>
+            <p class="element__title-counter"></p>
             <div class="element__title">
                 <button type="button" class="element__trash"></button>
                 <h2 class="element__title-text"></h2>                
             </div>
         </div>  
     </template>
+
 <script type="module" src="./pages/index.js"></script>
+
 </body>
 </html>
