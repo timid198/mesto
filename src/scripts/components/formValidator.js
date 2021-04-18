@@ -10,10 +10,10 @@ export default class FormValidator {
   //установка слушателей
 
   _setEventListeners(inputElement, buttonElement) {
-        this._checkInputValidity(inputElement);
-        this._toggleButtonState(inputElement, buttonElement);
+    this._checkInputValidity(inputElement);
+    this._toggleButtonState(inputElement, buttonElement);
   }
-  
+
 
   //поиск невалидного инпута
 
@@ -26,7 +26,8 @@ export default class FormValidator {
       this.buttonDisabled(inputElement, buttonElement);
     } else {
       this.buttonEnabled(inputElement, buttonElement);
-  }}
+    }
+  }
 
   //состояние кнопок
 
@@ -37,7 +38,7 @@ export default class FormValidator {
 
   buttonDisabled(inputElement, buttonElement) {
     this._buttonElement.classList.add(this._validationSettings.inactiveButtonClass);
-    this._buttonElement.setAttribute('disabled',true);
+    this._buttonElement.setAttribute('disabled', true);
   }
 
   //функция для первоначального показа форм в необходимом виде 
@@ -77,6 +78,8 @@ export default class FormValidator {
   //включение проверки событий ввода
 
   enableValidation() {
-    this._inputList.forEach((inputElement) => {inputElement.addEventListener ("input", () => {this._setEventListeners(inputElement, this._buttonElement)})
-  })}
+    this._inputList.forEach((inputElement) => {
+      inputElement.addEventListener("input", () => { this._setEventListeners(inputElement, this._buttonElement) })
+    })
+  }
 }
