@@ -94,4 +94,22 @@ export default class Api {
             return res.json();}
         return Promise.reject(`Ошибка ${res.status}`)})
     }
+
+    changeAvatar(avatar) {
+        return fetch(`${this._address}v1/${this._groupID}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: {
+            authorization: `${this._token}`,
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                avatar: `${avatar}`
+            })
+            }
+        )
+           .then(res => {
+            if (res.ok) {
+            return Promise.resolve('sucsess');}
+        return Promise.reject(`Ошибка ${res.status}`)})
+    }
 }
