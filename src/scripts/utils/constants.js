@@ -11,6 +11,7 @@ const inputData = {
   formAvatarClass: 'popup-avatar',
 }
 
+const avaPlace = document.querySelector('.profile__avatar');
 const formElementEdit = document.querySelector('.popup-edit__window');
 const inputTitleEdit = formElementEdit.querySelector('.popup__input_name');
 const inputAttributeEdit = formElementEdit.querySelector('.popup__input_about');
@@ -21,4 +22,4 @@ const buttonEditOpen = document.querySelector('.profile__edit-button');
 const buttonAddOpen = document.querySelector('.profile__add-button');
 const buttonAvatarEdit = document.querySelector('.profile__overlay');
 
-export { inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, popupAvatarform, buttonEditOpen, buttonAddOpen, buttonAvatarEdit, inputData }
+export { inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, popupAvatarform, buttonEditOpen, buttonAddOpen, buttonAvatarEdit, inputData, avaPlace }

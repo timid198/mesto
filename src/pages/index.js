@@ -6,7 +6,7 @@ import PopupWithForm from '../scripts/components/PopupWithForm.js';
 import UserInfo from '../scripts/components/UserInfo.js';
 import PicturePopup from '../scripts/components/PicturePopup.js';
 import Api from '../scripts/components/Api.js';
-import { inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, popupAvatarform, buttonEditOpen, buttonAddOpen, buttonAvatarEdit, inputData } from '../scripts/utils/constants.js';
+import { inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, popupAvatarform, buttonEditOpen, buttonAddOpen, buttonAvatarEdit, inputData, avaPlace } from '../scripts/utils/constants.js';
 
 // включение валидации
 
@@ -92,7 +92,7 @@ function newSection(el) {
       createSection.setItem(cardElement);
     }
   }, '.elements');
-  createSection.renderItems();
+  return createSection;
 }
 
 function createCard(item) {
@@ -111,7 +111,7 @@ function createCard(item) {
 Promise.all([api.getCards(), api.getUserData()])
   .then((res) => {
     userInfo.setUserInfoDefault(res[1]);
-    newSection(res[0])
+    newSection(res[0]).renderItems()
   })
   .catch((err) => console.log(err));
 
@@ -124,7 +124,9 @@ const formAdd = new PopupWithForm(
       renderLoading(popupAddForm, true);
       api.pushAddCardData({ name: formValues.title, link: formValues.link })
         .then((res) => {
+          console.log(res);
           newSection(res);
+          window.location.reload()
         })
         .catch((err) => console.log(err))
         .finally(() => {
@@ -153,6 +155,7 @@ const popupAvatar = new PopupWithForm(
     popupSelector: '.popup-avatar',
     handleFormSubmit: (formValues) => {
       renderLoading(popupAvatarform, true);
+      avaPlace.src = formValues.avatar;
       api.changeAvatar(formValues.avatar)
         .then(() => console.log('Аватар обновлен'), popupAvatar.close())
         .catch(err => console.log(err))
