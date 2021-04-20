@@ -1,5 +1,5 @@
 export default class Card {
-  constructor({ name, link, _id, likes, owner}, {myId, handlerRemoveClick, handlerLikesClick }, cardSelector, handleCardClick) {
+  constructor({ name, link, _id, likes, owner }, { myId, handlerRemoveClick, handlerLikesClick }, cardSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._id = _id;
@@ -31,26 +31,6 @@ export default class Card {
     this._element.id = this._id;
     this._element.querySelector('.element__title-text').textContent = this._name;
     this.updateLike();
-    this._setEventListeners();
-
-    return this._element;
-
-  }
-
-  generateCardDelInactive() {
-    this._element = this._getTemplate();
-    this.updateLike();
-    this.buttonLike = this._element.querySelector('.element__title-like');
-    this.counterLike = this._element.querySelector('.element__title-counter');
-    this.buttonDelete = this._element.querySelector('.element__trash');
-    this.cardImage = this._element.querySelector('.element__image');
-    this._element.querySelector('.element__title-counter').textContent = this._likes.length;
-    this.cardImage.src = this._link;
-    this.cardImage.alt = this._name;
-    this._element.id = this._id;
-    this._element.querySelector('.element__title-text').textContent = this._name;
-    this.buttonDelete.style.display = "none";
-    this.buttonDelete.setAttribute('disabled', true);
     this._setEventListeners();
 
     return this._element;
@@ -101,7 +81,7 @@ export default class Card {
   _setEventListeners() {
     if (!(this._owner._id === this.myId)) {
       this.buttonDelete.classList.add('element__trash_unset');
-      this.buttonDelete.setAttribute('disabled', true);
+      this.buttonDelete.setAttribute('disabled', true)
     }
     this.buttonLike.addEventListener('click', () => this.handlerLikesClick());
     this.buttonDelete.addEventListener('click', () => { this._handlerRemoveClick(), this.setDeleteHidden() });

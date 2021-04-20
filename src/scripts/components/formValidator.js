@@ -14,7 +14,6 @@ export default class FormValidator {
     this._toggleButtonState(inputElement, buttonElement);
   }
 
-
   //поиск невалидного инпута
 
   _hasNotValidInput(inputList) { return inputList.some((inputElement) => { return !inputElement.validity.valid }) };

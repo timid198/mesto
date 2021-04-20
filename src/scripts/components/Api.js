@@ -6,18 +6,20 @@ export default class Api {
     }
 
 
+    _checkPromise(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`Ошибка ${res.status}`)
+    }
+
     getCards() {
         return fetch(`${this._address}v1/${this._groupID}/cards`, {
             headers: {
                 authorization: `${this._token}`
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 
     getUserData() {
@@ -27,12 +29,7 @@ export default class Api {
             }
         })
 
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 
     pushUserData(data) {
@@ -48,12 +45,7 @@ export default class Api {
             })
         })
 
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 
     pushAddCardData(data) {
@@ -69,12 +61,7 @@ export default class Api {
             })
         })
 
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 
     deleteCard(id) {
@@ -97,12 +84,7 @@ export default class Api {
                 authorization: `${this._token}`
             }
         })
-            .then(res => {
-                if (res.ok) {
-                    return res.json();
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 
     changeAvatar(avatar) {
@@ -117,11 +99,6 @@ export default class Api {
             })
         }
         )
-            .then(res => {
-                if (res.ok) {
-                    return Promise.resolve('sucsess');
-                }
-                return Promise.reject(`Ошибка ${res.status}`)
-            })
+            .then(res => this._checkPromise(res))
     }
 }
