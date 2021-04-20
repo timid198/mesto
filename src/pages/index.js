@@ -1,4 +1,4 @@
-// import './index.css';
+import './index.css';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
@@ -7,7 +7,6 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import PicturePopup from '../scripts/components/PicturePopup.js';
 import Api from '../scripts/components/Api.js';
 import { inputTitleEdit, inputAttributeEdit, popupEditForm, popupAddForm, popupAvatarform, buttonEditOpen, buttonAddOpen, buttonAvatarEdit, inputData } from '../scripts/utils/constants.js';
-
 
 // включение валидации
 
@@ -22,7 +21,6 @@ validationAva.enableValidation();
 
 const viewerImage = new PicturePopup('.popup-view');
 viewerImage.setEventListeners();
-
 
 //переменная для передачи результата в popupDelete
 let cardToRemove = {};
