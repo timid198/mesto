@@ -23,6 +23,7 @@ const viewerImage = new PicturePopup('.popup-view');
 viewerImage.setEventListeners();
 
 //переменная для передачи результата в popupDelete
+
 let cardToRemove = {};
 
 // функция отображения UX 
@@ -85,33 +86,46 @@ buttonEditOpen.addEventListener('click', popupEditOpen)
 
 // отображение страницы
 
-function newSection(el) {
+function cardSectionRender(sectionValues) {
   const createSection = new Section({
-    items: el, renderer: (item) => {
-      const cardElement = createCard(item);
-      createSection.setItem(cardElement);
-    }
-  }, '.elements');
-  return createSection;
+    renderer: (item) => {
+      const newCard = new Card(item, {
+        myId: userInfo._id,
+        handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
+        handlerLikesClick: () => {
+          api.changeCardsLikes(newCard._id, newCard.isLiked())
+          .then((data) => newCard.setLikes(data))
+          .catch((err) => console.log(err));
+        }
+      }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+      createSection.setItem(newCard.generateCard());
+    }}, '.elements')
+
+  createSection.renderItems(sectionValues);
 }
 
-function createCard(item) {
-  const cardElement = new Card(item, {
-    myId: userInfo._id,
-    handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = cardElement },
-    handlerLikesClick: () => {
-      api.changeCardsLikes(cardElement._id, cardElement.isLiked())
-      .then((data) => cardElement.setLikes(data))
-      .catch((err) => console.log(err));
-    }
-  }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-  return cardElement.generateCard()
+function cardSectionRenderAdding(sectionValues) {
+  const createSection = new Section({
+    renderer: (item) => {
+      const newCard = new Card(item, {
+        myId: userInfo._id,
+        handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
+        handlerLikesClick: () => {
+          api.changeCardsLikes(newCard._id, newCard.isLiked())
+          .then((data) => newCard.setLikes(data))
+          .catch((err) => console.log(err));
+        }
+      }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+      createSection.addItem(newCard.generateCard());
+    }}, '.elements')
+
+  createSection.renderItems(sectionValues);
 }
 
 Promise.all([api.getCards(), api.getUserData()])
   .then((res) => {
     userInfo.setUserInfoDefault(res[1]);
-    newSection(res[0]).renderItems()
+    cardSectionRender(res[0])
   })
   .catch((err) => console.log(err));
 
@@ -124,9 +138,7 @@ const formAdd = new PopupWithForm(
       renderLoading(popupAddForm, true);
       api.pushAddCardData({ name: formValues.title, link: formValues.link })
         .then((res) => {
-          console.log(res);
-          newSection(res);
-          window.location.reload()
+          cardSectionRenderAdding([res])
         })
         .catch((err) => console.log(err))
         .finally(() => {
@@ -135,7 +147,6 @@ const formAdd = new PopupWithForm(
       formAdd.close();
     }
   });
-
 
 formAdd.setEventListeners(); // установка слушателей формы
 
