@@ -61,45 +61,9 @@ const createCard = (cardData) => {
 }
 
 const newSection = new Section({
-  renderer: (item, checker) => {
-    newSection.addItem(createCard(item, checker));
+  renderer: (item) => {
+    newSection.addItem(createCard(item));
   }}, '.elements')
-
-// function cardSectionRender(sectionValues) {
-//   const createSection = new Section({
-//     renderer: (item) => {
-//       const newCard = new Card(item, {
-//         myId: userInfo._id,
-//         handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
-//         handlerLikesClick: () => {
-//           api.changeCardsLikes(newCard._id, newCard.isLiked())
-//           .then((data) => newCard.setLikes(data))
-//           .catch((err) => console.log(err));
-//         }
-//       }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-//       createSection.setItem(newCard.generateCard());
-//     }}, '.elements')
-
-//   createSection.renderItems(sectionValues);
-// }
-
-// function cardSectionRenderAdding(sectionValues) {
-//   const createSection = new Section({
-//     renderer: (item) => {
-//       const newCard = new Card(item, {
-//         myId: userInfo._id,
-//         handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
-//         handlerLikesClick: () => {
-//           api.changeCardsLikes(newCard._id, newCard.isLiked())
-//           .then((data) => newCard.setLikes(data))
-//           .catch((err) => console.log(err));
-//         }
-//       }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-//       createSection.addItem(newCard.generateCard());
-//     }}, '.elements')
-
-//   createSection.renderItems(sectionValues);
-// }
 
 Promise.all([api.getCards(), api.getUserData()])
   .then((res) => {
