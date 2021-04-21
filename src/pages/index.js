@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
@@ -44,6 +44,67 @@ const api = new Api({
   groupID: 'cohort-22',
 })
 
+// отображение страницы
+
+const newSection = (...arg) => new Section({
+    items: {...arg}, renderer: (item) => {
+      const cardElement = createCard(item);
+      newSection.setItem(cardElement);
+    }
+  }, '.elements');
+
+function createCard(item) {
+  const cardElement = new Card(item, {
+    myId: userInfo._id,
+    handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = cardElement },
+    handlerLikesClick: () => {
+      api.changeCardsLikes(cardElement._id, cardElement.isLiked())
+      .then((data) => cardElement.setLikes(data))
+      .catch((err) => console.log(err));
+    }
+  }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+  return cardElement.generateCard()
+}
+
+Promise.all([api.getCards(), api.getUserData()])
+  .then((res) => {
+    userInfo.setUserInfoDefault(res[1]);
+    newSection(res[0]).renderItems()
+  })
+  .catch((err) => console.log(err));
+
+//добавление карточки на сервер (работа с API)
+
+const formAdd = new PopupWithForm(
+  {
+    popupSelector: '.popup-add',
+    handleFormSubmit: (formValues) => {
+      renderLoading(popupAddForm, true);
+      api.pushAddCardData({ name: formValues.title, link: formValues.link })
+        .then((res) => {
+          newSection(res);
+          window.location.reload()
+        })
+        .catch((err) => console.log(err))
+        .finally(() => {
+          renderLoading(popupAddForm, false);
+        })
+      formAdd.close();
+    }
+  });
+
+
+formAdd.setEventListeners(); // установка слушателей формы
+
+function addingCard(evt) {
+  evt.preventDefault();
+  validationAdd.buttonDisabled();
+  validationAdd.clearInputsFromError();
+  formAdd.open();
+}
+
+buttonAddOpen.addEventListener('click', addingCard);
+
 // получение объекта информации о пользователе с сервера, отправление информации о пользователе на сервер (работа с API)
 
 const userInfo = new UserInfo({ userNameSelector: '.profile__visitor-name', userAboutSelector: '.profile__visitor-attribute', userAvatarSelector: '.profile__avatar' });
@@ -82,71 +143,6 @@ function popupEditOpen(evt) {
 }
 
 buttonEditOpen.addEventListener('click', popupEditOpen)
-
-// отображение страницы
-
-function newSection(el) {
-  const createSection = new Section({
-    items: el, renderer: (item) => {
-      const cardElement = createCard(item);
-      createSection.setItem(cardElement);
-    }
-  }, '.elements');
-  return createSection;
-}
-
-function createCard(item) {
-  const cardElement = new Card(item, {
-    myId: userInfo._id,
-    handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = cardElement },
-    handlerLikesClick: () => {
-      api.changeCardsLikes(cardElement._id, cardElement.isLiked())
-      .then((data) => cardElement.setLikes(data))
-      .catch((err) => console.log(err));
-    }
-  }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-  return cardElement.generateCard()
-}
-
-Promise.all([api.getCards(), api.getUserData()])
-  .then((res) => {
-    userInfo.setUserInfoDefault(res[1]);
-    newSection(res[0]).renderItems()
-  })
-  .catch((err) => console.log(err));
-
-//добавление карточки на сервер (работа с API)
-
-const formAdd = new PopupWithForm(
-  {
-    popupSelector: '.popup-add',
-    handleFormSubmit: (formValues) => {
-      renderLoading(popupAddForm, true);
-      api.pushAddCardData({ name: formValues.title, link: formValues.link })
-        .then((res) => {
-          console.log(res);
-          newSection(res);
-          window.location.reload()
-        })
-        .catch((err) => console.log(err))
-        .finally(() => {
-          renderLoading(popupAddForm, false);
-        })
-      formAdd.close();
-    }
-  });
-
-
-formAdd.setEventListeners(); // установка слушателей формы
-
-function addingCard(evt) {
-  evt.preventDefault();
-  validationAdd.buttonDisabled();
-  validationAdd.clearInputsFromError();
-  formAdd.open();
-}
-
-buttonAddOpen.addEventListener('click', addingCard);
 
 //обновление аватара (работа с API)
 
