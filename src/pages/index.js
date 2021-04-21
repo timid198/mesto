@@ -1,4 +1,4 @@
-import './index.css';
+// import './index.css';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
 import Section from '../scripts/components/Section.js';
@@ -47,46 +47,64 @@ const api = new Api({
 
 // отображение страницы
 
-function cardSectionRender(sectionValues) {
-  const createSection = new Section({
-    renderer: (item) => {
-      const newCard = new Card(item, {
-        myId: userInfo._id,
-        handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
-        handlerLikesClick: () => {
-          api.changeCardsLikes(newCard._id, newCard.isLiked())
-          .then((data) => newCard.setLikes(data))
-          .catch((err) => console.log(err));
-        }
-      }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-      createSection.setItem(newCard.generateCard());
-    }}, '.elements')
-
-  createSection.renderItems(sectionValues);
+const createCard = (cardData) => {
+  const card = new Card (cardData, {
+    myId: userInfo._id,
+    handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = card },
+    handlerLikesClick: () => {
+      api.changeCardsLikes(card._id, card.isLiked())
+      .then((data) => card.setLikes(data))
+      .catch((err) => console.log(err));
+    }
+  }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+  return card.generateCard()
 }
 
-function cardSectionRenderAdding(sectionValues) {
-  const createSection = new Section({
-    renderer: (item) => {
-      const newCard = new Card(item, {
-        myId: userInfo._id,
-        handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
-        handlerLikesClick: () => {
-          api.changeCardsLikes(newCard._id, newCard.isLiked())
-          .then((data) => newCard.setLikes(data))
-          .catch((err) => console.log(err));
-        }
-      }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
-      createSection.addItem(newCard.generateCard());
-    }}, '.elements')
+const newSection = new Section({
+  renderer: (item, checker) => {
+    newSection.addItem(createCard(item, checker));
+  }}, '.elements')
 
-  createSection.renderItems(sectionValues);
-}
+// function cardSectionRender(sectionValues) {
+//   const createSection = new Section({
+//     renderer: (item) => {
+//       const newCard = new Card(item, {
+//         myId: userInfo._id,
+//         handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
+//         handlerLikesClick: () => {
+//           api.changeCardsLikes(newCard._id, newCard.isLiked())
+//           .then((data) => newCard.setLikes(data))
+//           .catch((err) => console.log(err));
+//         }
+//       }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+//       createSection.setItem(newCard.generateCard());
+//     }}, '.elements')
+
+//   createSection.renderItems(sectionValues);
+// }
+
+// function cardSectionRenderAdding(sectionValues) {
+//   const createSection = new Section({
+//     renderer: (item) => {
+//       const newCard = new Card(item, {
+//         myId: userInfo._id,
+//         handlerRemoveClick: () => { popupDeleteCard.open(); cardToRemove = newCard },
+//         handlerLikesClick: () => {
+//           api.changeCardsLikes(newCard._id, newCard.isLiked())
+//           .then((data) => newCard.setLikes(data))
+//           .catch((err) => console.log(err));
+//         }
+//       }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
+//       createSection.addItem(newCard.generateCard());
+//     }}, '.elements')
+
+//   createSection.renderItems(sectionValues);
+// }
 
 Promise.all([api.getCards(), api.getUserData()])
   .then((res) => {
     userInfo.setUserInfoDefault(res[1]);
-    cardSectionRender(res[0])
+    newSection.renderItems(res[0])
   })
   .catch((err) => console.log(err));
 
@@ -99,7 +117,7 @@ const formAdd = new PopupWithForm(
       renderLoading(popupAddForm, true);
       api.pushAddCardData({ name: formValues.title, link: formValues.link })
         .then((res) => {
-          cardSectionRenderAdding([res])
+          newSection.renderItems([res])
         })
         .catch((err) => console.log(err))
         .finally(() => {

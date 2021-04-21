@@ -8,11 +8,7 @@ export default class Section {
         value.forEach((item) => this._renderer(item));
     }  
 
-    setItem(element) {
-        this._form.append(element);
-      }
-
     addItem(element) {
-        this._form.prepend(element);
+            this._form.prepend(element)
       }
 }
