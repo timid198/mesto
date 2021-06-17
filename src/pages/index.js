@@ -14,8 +14,8 @@ const validationEdit = new FormValidator(inputData, popupEditForm);
 validationEdit.enableValidation();
 const validationAdd = new FormValidator(inputData, popupAddForm);
 validationAdd.enableValidation();
-// const validationAva = new FormValidator(inputData, popupAvatarform);
-// validationAva.enableValidation();
+const validationAva = new FormValidator(inputData, popupAvatarform);
+validationAva.enableValidation();
 
 //просмотрщик карточек
 
@@ -162,8 +162,8 @@ popupAvatar.setEventListeners();
 
 function avatarEdit(evt) {
   evt.preventDefault();
-//   validationAva.buttonDisabled();
-//   validationAva.clearInputsFromError();
+  validationAva.buttonDisabled();
+  validationAva.clearInputsFromError();
   popupAvatar.open();
 }
 
