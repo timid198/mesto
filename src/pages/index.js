@@ -54,7 +54,7 @@ const createCard = (cardData) => {
     handlerLikesClick: () => {
       api.changeCardsLikes(card._id, card.isLiked())
       .then((data) => card.setLikes(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err, err.name));
     }
   }, '.template__element_simple', viewerImage.handleCardClick.bind(viewerImage));
   return card.generateCard()
@@ -70,7 +70,7 @@ Promise.all([api.getCards(), api.getUserData()])
     userInfo.setUserInfoDefault(res[1]);
     newSection.renderItems(res[0])
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log(err, err.name));
 
 //добавление карточки на сервер (работа с API)
 
@@ -83,7 +83,7 @@ const formAdd = new PopupWithForm(
         .then((res) => {
           newSection.renderItems([res])
         })
-        .catch((err) => console.log(err))
+        .catch((err) => console.log(err, err.name))
         .finally(() => {
           renderLoading(popupAddForm, false);
         })
@@ -116,7 +116,7 @@ const formEdit = new PopupWithForm(
           userInfo.setUserInfo({ name: res.name, about: res.about, id: res._id });
           formEdit.close()
         })
-        .catch(err => console.log(err))
+        .catch(err => console.log(err, err.name))
         .finally(() => {
           renderLoading(popupEditForm, false);
         })
@@ -151,7 +151,7 @@ const popupAvatar = new PopupWithForm(
       avaPlace.src = formValues.avatar;
       api.changeAvatar(formValues.avatar)
         .then(() => console.log('Аватар обновлен'), popupAvatar.close())
-        .catch(err => console.log(err))
+        .catch(err => console.log(err, err.name))
         .finally(() => {
           renderLoading(popupAvatarform, false);
         });
