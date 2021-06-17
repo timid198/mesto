@@ -14,7 +14,7 @@ const validationEdit = new FormValidator(inputData, popupEditForm);
 validationEdit.enableValidation();
 const validationAdd = new FormValidator(inputData, popupAddForm);
 validationAdd.enableValidation();
-const validationAva = new FormValidator(inputData, popupAvatarform);
+// const validationAva = new FormValidator(inputData, popupAvatarform);
 // validationAva.enableValidation();
 
 //просмотрщик карточек
