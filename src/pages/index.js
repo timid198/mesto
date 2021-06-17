@@ -162,8 +162,8 @@ popupAvatar.setEventListeners();
 
 function avatarEdit(evt) {
   evt.preventDefault();
-  validationAva.buttonDisabled();
-  validationAva.clearInputsFromError();
+//   validationAva.buttonDisabled();
+//   validationAva.clearInputsFromError();
   popupAvatar.open();
 }
 
