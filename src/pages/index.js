@@ -151,7 +151,7 @@ const popupAvatar = new PopupWithForm(
       avaPlace.src = formValues.avatar;
       api.changeAvatar(formValues.avatar)
         .then(() => console.log('Аватар обновлен'), popupAvatar.close())
-        .catch(err => console.log(err, err.name))
+        .catch(err => console.log(err.name))
         .finally(() => {
           renderLoading(popupAvatarform, false);
         });
