@@ -41,7 +41,7 @@ function renderLoading(popupForm, isLoading) {
 
 const api = new Api({
   address: 'https://mesto.nomoreparties.co/',
-  token: '4f64f170-2de3-4b0f-8592-8133023e0f4d',
+  token: '4f64f170-2de3-4b0f-8592-8133023e0f5d',
   groupID: 'cohort-22',
 })
 
